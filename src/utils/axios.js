@@ -39,6 +39,9 @@ service.interceptors.response.use(
 		if (code === 401) {
 			Message.error(`身份信息校验失败、请重新登录`);
 			store.dispatch('logout');
+		} else if (status === 400) {
+			// 400 错误使用 warning 提示
+			Message.warning(message);
 		} else {
 			Message.error(message);
 		}

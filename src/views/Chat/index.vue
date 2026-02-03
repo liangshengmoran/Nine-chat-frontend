@@ -58,7 +58,8 @@ import ChatProgress from "@/components/Chat/ChatProgress";
 import PreImg from "@/components/PreImg";
 // import BulletChat from '@/components/BulletChat'
 import Barrage from '@/components/Barrage'
-import { setTheme } from "@/theme";
+// setTheme 暂未使用，需要时取消注释
+// import { setTheme } from "@/theme";
 
 import { history } from "@/api/chat";
 import config from "@/config/index";
@@ -83,6 +84,7 @@ export default {
       lock: true, // 用户确认进入房间后才能解锁 之后允许使用快捷键
       showChatPanle: false, // 是否现在聊天窗口
       stopLoadmore: false, // 是否加载完了历史消息
+			backgroundImage: '',
       messageParams: {
         page: 1,
         pagesize: 20,

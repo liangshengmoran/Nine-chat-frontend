@@ -97,7 +97,7 @@ export default {
   }
 }
 .login {
-  background: url("https://jiangly.com/_nuxt/img/banner_111.a6be22c.gif");
+  background: url("../assets/background.gif");
   height: 100%;
   display: flex;
   justify-content: center;
