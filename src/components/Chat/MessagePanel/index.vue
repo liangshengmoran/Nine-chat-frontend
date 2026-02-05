@@ -13,20 +13,16 @@
 					<div class="info-box">
 						<span :class="['name', getUserRoleClass(item)]">
 							{{ item.user_info && item.user_info.user_nick }}
-							<!-- 超级管理员金色双五角星 -->
-							<template v-if="item.user_info && item.user_info.user_role === 'super'">
-								<icon name="admin-star" class="admin-badge super-admin" scale="1.2" />
-								<icon name="admin-star" class="admin-badge super-admin" scale="1.2" />
-							</template>
-							<!-- 管理员金色五角星 -->
-							<icon v-else-if="item.user_info && item.user_info.user_role === 'admin'" name="admin-star" class="admin-badge super-admin" scale="1.2" />
-							<!-- 房主紫色五角星 -->
-							<icon
-								v-if="item.user_info && item.user_info.id === room_admin_id && !['super', 'admin'].includes(item.user_info.user_role)"
-								name="admin-star"
-								class="admin-badge room-admin"
-								scale="1.2"
-							/>
+							<!-- 超级管理员标签 -->
+							<span v-if="item.user_info && item.user_info.user_role === 'super'" class="role-tag super-tag">超管</span>
+							<!-- 管理员标签 -->
+							<span v-else-if="item.user_info && item.user_info.user_role === 'admin'" class="role-tag admin-tag">管理</span>
+							<!-- 房主标签 -->
+							<span v-if="item.user_info && item.user_info.id === room_admin_id && !['super', 'admin'].includes(item.user_info.user_role)" class="role-tag owner-tag">房主</span>
+							<!-- 房管标签（版主） -->
+							<span v-if="item.user_info && item.user_info.is_moderator && !['super', 'admin'].includes(item.user_info.user_role) && item.user_info.id !== room_admin_id" class="role-tag moderator-tag"
+								>房管</span
+							>
 						</span>
 
 						<!-- 文字消息 -->
@@ -643,17 +639,33 @@ export default {
           color: #9b59b6;
           font-weight: bold;
         }
-        /* 管理员图标 */
-        .admin-badge {
-          margin-left: 2px;
-          &.super-admin {
-            color: #d4af37;
-            filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.5));
-          }
-          &.room-admin {
-            color: #9b59b6;
-            filter: drop-shadow(0 0 2px rgba(155, 89, 182, 0.5));
-          }
+        /* 角色标签样式 */
+        .role-tag {
+          font-size: 10px;
+          padding: 1px 4px;
+          border-radius: 3px;
+          margin-left: 4px;
+          font-weight: normal;
+        }
+        .super-tag {
+          background: linear-gradient(135deg, #d4af37 0%, #f5d76e 100%);
+          color: #fff;
+          box-shadow: 0 1px 3px rgba(212, 175, 55, 0.4);
+        }
+        .admin-tag {
+          background: linear-gradient(135deg, #3498db 0%, #5dade2 100%);
+          color: #fff;
+          box-shadow: 0 1px 3px rgba(52, 152, 219, 0.4);
+        }
+        .owner-tag {
+          background: linear-gradient(135deg, #9b59b6 0%, #bb8fce 100%);
+          color: #fff;
+          box-shadow: 0 1px 3px rgba(155, 89, 182, 0.4);
+        }
+        .moderator-tag {
+          background: linear-gradient(135deg, #27ae60 0%, #58d68d 100%);
+          color: #fff;
+          box-shadow: 0 1px 3px rgba(39, 174, 96, 0.4);
         }
       }
 

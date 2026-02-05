@@ -277,7 +277,6 @@ export default {
           window.userLocation = city || province || country || '未知地区';
         }
       } catch (e) {
-        console.error('获取用户位置失败:', e);
       }
     },
 
