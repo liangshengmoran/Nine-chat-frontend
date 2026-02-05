@@ -17,9 +17,9 @@
 							<span v-if="item.user_info && item.user_info.user_role === 'super'" class="role-tag super-tag">超管</span>
 							<!-- 管理员标签 -->
 							<span v-else-if="item.user_info && item.user_info.user_role === 'admin'" class="role-tag admin-tag">管理</span>
-							<!-- 房主标签 -->
-							<span v-if="item.user_info && item.user_info.id === room_admin_id && !['super', 'admin'].includes(item.user_info.user_role)" class="role-tag owner-tag">房主</span>
-							<!-- 房管标签（版主） -->
+							<!-- 房主标签（可与超管/管理组合） -->
+							<span v-if="item.user_info && item.user_info.id === room_admin_id" class="role-tag owner-tag">房主</span>
+							<!-- 房管标签（版主，排除超管/管理/房主） -->
 							<span v-if="item.user_info && item.user_info.is_moderator && !['super', 'admin'].includes(item.user_info.user_role) && item.user_info.id !== room_admin_id" class="role-tag moderator-tag"
 								>房管</span
 							>
