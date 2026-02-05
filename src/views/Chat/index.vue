@@ -266,28 +266,33 @@ export default {
       this.emptyMessageDataList();
       this.messageParams.page = 1;
     },
-    /* 调用一个开发API拿到用户位置的js */
-    initUserAddress() {
-      if (!document.querySelector("#address")) {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.id = "address";
-        script.src = "https://pv.sohu.com/cityjson?ie=utf-8";
-        document.head.appendChild(script);
+    /* 调用 ipip.net API 获取用户位置 */
+    async initUserAddress() {
+      if (window.userLocation) return;
+      try {
+        const response = await fetch('https://myip.ipip.net/json');
+        const data = await response.json();
+        if (data.ret === 'ok' && data.data?.location) {
+          const [country, province, city] = data.data.location;
+          window.userLocation = city || province || country || '未知地区';
+        }
+      } catch (e) {
+        console.error('获取用户位置失败:', e);
       }
     },
 
     /* 初始化ws需要参数携带token room_id 地址 前去校验 连接后挂载在全局 */
     async initSocket() {
       const token = localStorage.chat_token;
-      if (!window.returnCitySN && this.count<= 3) {
-        this.count++
-        setTimeout(() => this.initSocket(), 50);
+      // 等待位置信息获取完成，最多等待3次
+      if (!window.userLocation && this.count <= 3) {
+        this.count++;
+        setTimeout(() => this.initSocket(), 100);
       } else {
-        const cname = window.returnCitySN? window.returnCitySN.cname : this.getRandomAddr();
+        const address = window.userLocation || this.getRandomAddr();
         this.$socket.client.io.opts.query = {
           token,
-          address: cname,
+          address,
           room_id: this.room_id,
         };
         localStorage.room_id = this.room_id;

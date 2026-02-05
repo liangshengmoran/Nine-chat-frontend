@@ -99,7 +99,7 @@ export default {
   }
 }
 .login {
-  background: url("https://jiangly.com/_nuxt/img/banner_111.a6be22c.gif");
+  background: url("/static/img/background.0ae6c691.gif");
   height: 100%;
   display: flex;
   justify-content: center;
