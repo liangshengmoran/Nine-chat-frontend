@@ -682,7 +682,7 @@ export default {
         }
         /* Bot 昵称样式 */
         .bot-name {
-          color: #667eea;
+          color: #0085FF;
           font-weight: 600;
         }
       }
