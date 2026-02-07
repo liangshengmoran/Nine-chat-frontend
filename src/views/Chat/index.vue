@@ -277,6 +277,7 @@ export default {
           window.userLocation = city || province || country || '未知地区';
         }
       } catch (e) {
+        // ignore location fetch error
       }
     },
 

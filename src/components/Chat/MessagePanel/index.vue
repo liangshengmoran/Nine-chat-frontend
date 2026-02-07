@@ -2,13 +2,13 @@
 	<div id="box" class="message-box">
 		<div v-for="(item, index) in displayMessageList" :key="item._key || index" :ref="`message__${item.id || -1}`" :class="['message-box-item', messageClass(item)]">
 			<!-- 系统消息折叠提示 - 放在第一个可见info消息之前 -->
-			<div v-if="item._isCollapseBar" class="info-collapse-bar" @click="toggleInfoCollapse">
+			<div v-if="item.isCollapseBar" class="info-collapse-bar" @click="toggleInfoCollapse">
 				<icon name="chat-panel-link" scale="1.2" />
 				<span v-if="infoCollapsed">已隐藏 {{ hiddenInfoCount }} 条系统消息，点击展开</span>
 				<span v-else>点击收起系统消息</span>
 			</div>
 			<!-- text  'notice', 'info' 类型分别代表公告和中间的提示消息不在此处显示-->
-			<span v-if="!tipsMessageType.includes(item.message_type) && !item._isCollapseBar" class="message-box-item-info">
+			<span v-if="item.message_type && !tipsMessageType.includes(item.message_type) && !item.isCollapseBar" class="message-box-item-info">
 				<el-dropdown trigger="click" placement="bottom" size="mini" @command="handlerMessageCommand($event, item)">
 					<div class="info-box">
 						<span :class="['name', getUserRoleClass(item)]">
@@ -23,6 +23,8 @@
 							<span v-if="item.user_info && item.user_info.is_moderator && !['super', 'admin'].includes(item.user_info.user_role) && item.user_info.id !== room_admin_id" class="role-tag moderator-tag"
 								>房管</span
 							>
+							<!-- Bot 机器人图标 -->
+							<icon v-if="item.user_info && item.user_info.is_bot" name="robot_label" scale="2" class="bot-icon" />
 						</span>
 
 						<!-- 文字消息 -->
@@ -114,7 +116,7 @@
 					<span>
 						<el-dropdown-menu slot="dropdown">
 							<el-dropdown-item icon="el-icon-chat-line-square" command="1">引用消息</el-dropdown-item>
-							<el-dropdown-item v-if="item.user_info.id === mine_id" icon="el-icon-delete" command="2">撤回消息</el-dropdown-item>
+							<el-dropdown-item v-if="item.user_info && item.user_info.id === mine_id" icon="el-icon-delete" command="2">撤回消息</el-dropdown-item>
 							<el-dropdown-item
 								v-if="
                   imgMessageType.includes(item.message_type) &&
@@ -185,7 +187,7 @@ export default {
 
     /* 获取所有info类型消息 */
     allInfoMessages() {
-      return this.messageList.filter(m => m.message_type === 'info');
+      return this.messageList.filter(m => m && m.message_type === 'info');
     },
 
     /* 计算被隐藏的info消息数量 */
@@ -197,27 +199,30 @@ export default {
 
     /* 过滤后的消息列表，折叠时只显示最近的N条info消息，并在第一个可见info前插入折叠栏 */
     displayMessageList() {
+      // 过滤掉 undefined 元素
+      const validMessages = this.messageList.filter(m => m && typeof m === 'object');
+
       // 找出所有info消息的索引
       const infoIndices = [];
-      this.messageList.forEach((m, i) => {
-        if (m.message_type === 'info') {
+      validMessages.forEach((m, i) => {
+        if (m && m.message_type === 'info') {
           infoIndices.push(i);
         }
       });
 
       // 如果info消息数量小于等于最大显示数，不需要折叠栏
       if (infoIndices.length <= this.maxVisibleInfoMessages) {
-        return this.messageList;
+        return validMessages;
       }
 
       if (!this.infoCollapsed) {
         // 展开状态：显示所有消息，但在第一个info消息前插入折叠栏
         const firstInfoIdx = infoIndices[0];
         const result = [];
-        this.messageList.forEach((m, i) => {
+        validMessages.forEach((m, i) => {
           if (i === firstInfoIdx) {
             // 在第一个info消息前插入折叠栏
-            result.push({ _isCollapseBar: true, _key: 'collapse-bar' });
+            result.push({ isCollapseBar: true, collapseKey: 'collapse-bar' });
           }
           result.push(m);
         });
@@ -229,13 +234,13 @@ export default {
       const firstVisibleInfoIdx = infoIndices[infoIndices.length - this.maxVisibleInfoMessages];
 
       const result = [];
-      this.messageList.forEach((m, i) => {
+      validMessages.forEach((m, i) => {
         if (hideIndices.has(i)) {
           return; // 跳过隐藏的info消息
         }
         if (i === firstVisibleInfoIdx) {
           // 在第一个可见的info消息前插入折叠栏
-          result.push({ _isCollapseBar: true, _key: 'collapse-bar' });
+          result.push({ isCollapseBar: true, collapseKey: 'collapse-bar' });
         }
         result.push(m);
       });
@@ -245,6 +250,8 @@ export default {
 
     messageClass() {
       return (item) => {
+        // 折叠栏特殊处理
+        if (item.isCollapseBar) return 'collapse-bar-item';
         const { user_id, message_type } = item;
         if (!["info", "notice"].includes(message_type)) {
           return user_id === this.mine_id ? "mine" : "other";
@@ -266,7 +273,8 @@ export default {
     getUserRoleClass() {
       return (item) => {
         if (!item.user_info) return '';
-        const { user_role, id } = item.user_info;
+        const { user_role, id, is_bot } = item.user_info;
+        if (is_bot) return 'bot-name';  // Bot 特殊样式
         if (['super', 'admin'].includes(user_role)) return 'super-admin-name';
         if (this.room_admin_id === id) return 'room-admin-name';
         return '';
@@ -298,7 +306,7 @@ export default {
       const isOneMsg = n.length - o.length === 1; // 是否本次增加了一条消息
 
       /*  记录旧的数据第一个id可以拿到所有消息的最顶部那条消息id 然后拿到节点 */
-      const lastNodeId = o.length > 10 ? o[0].id : 0;
+      const lastNodeId = o.length > 10 && o[0] ? o[0].id : 0;
 
       /* 当不是在可视区域并且一次不止一条消息加入队列的情况说明是上拉刷新 */
       if (!this.isVisible && !isOneMsg) {
@@ -666,6 +674,16 @@ export default {
           background: linear-gradient(135deg, #27ae60 0%, #58d68d 100%);
           color: #fff;
           box-shadow: 0 1px 3px rgba(39, 174, 96, 0.4);
+        }
+        /* Bot 机器人图标 */
+        .bot-icon {
+          margin-left: 4px;
+          vertical-align: middle;
+        }
+        /* Bot 昵称样式 */
+        .bot-name {
+          color: #667eea;
+          font-weight: 600;
         }
       }
 
