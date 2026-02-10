@@ -35,19 +35,25 @@ function loadEmotionData() {
 	}
 }
 
-// 加载表情图片
+// 加载表情图片（从分类子目录加载）
 function loadEmotionImages() {
 	try {
-		const emotionContext = require.context('@/components/Emotion/emotionImgs', false, /\.(gif|png|jpg|jpeg)$/i);
+		const emotionContext = require.context('@/components/Emotion/emotionImgs', true, /\.(gif|png|jpg|jpeg)$/i);
 		emotionContext.keys().forEach(key => {
-			const match = key.match(/(\d+)\.(gif|png|jpg|jpeg)$/i);
+			// key 格式: ./默认/0.gif 或 ./Sticker/105.png
+			// 跳过根目录下的文件，只读取子目录中的文件
+			const parts = key.split('/');
+			if (parts.length < 3) return; // 跳过 ./0.gif 这种根目录文件
+
+			const filename = parts[parts.length - 1];
+			const match = filename.match(/(\d+)\.(gif|png|jpg|jpeg)$/i);
 			if (match) {
 				const id = match[1];
 				emotionImages[id] = emotionContext(key);
 			}
 		});
 		// eslint-disable-next-line no-console
-		console.log(`成功加载 ${Object.keys(emotionImages).length} 个表情图片`);
+		console.log(`成功加载 ${Object.keys(emotionImages).length} 个表情图片（从分类目录）`);
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.warn('表情图片加载失败，请检查图片路径:', error);
@@ -64,7 +70,7 @@ export function getImgUrl(id) {
 	if (image) {
 		return image;
 	}
-	return `/emotionImgs/${id}.gif`;
+	return `/emotionImgs/默认/${id}.gif`;
 }
 
 // 将表情文本转换为HTML图片标签
