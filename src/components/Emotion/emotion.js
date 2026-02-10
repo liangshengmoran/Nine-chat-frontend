@@ -114,7 +114,7 @@ export function emotion(res) {
 export function replaceEmotionText(content) {
 	if (!content || typeof content !== 'string') return '';
 	// 支持中文、英文、数字的表情名称
-	return content.replace(/\[[\u4E00-\u9FA5a-zA-Z0-9]{1,20}\]/gi, emotion);
+	return content.replace(/\[[\u4E00-\u9FA5a-zA-Z0-9:]{1,30}\]/gi, emotion);
 }
 
 // 解析混合内容（文本+表情）
@@ -122,7 +122,7 @@ export function parseMixedContent(content) {
 	if (!content || typeof content !== 'string') return '';
 
 	// 更灵活的正则匹配，支持中英文数字混合的表情名称
-	const regex = /(\[[\u4E00-\u9FA5a-zA-Z0-9]{1,20}\])/g;
+	const regex = /(\[[\u4E00-\u9FA5a-zA-Z0-9:]{1,30}\])/g;
 	const parts = content.split(regex);
 
 	return parts
