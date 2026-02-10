@@ -14,7 +14,7 @@ function loadEmotionData() {
 
 			emotionCategories.push({
 				category: categoryData.category,
-				imgDir: imgDir,
+				imgDir,
 				emotions: categoryData.emotions
 			});
 
