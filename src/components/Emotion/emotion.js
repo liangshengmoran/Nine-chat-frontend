@@ -1,7 +1,7 @@
 // 动态加载所有表情分类数据
 const emotionCategories = [];
-const emotionMap = {};
-const emotionImages = {};
+const emotionMap = {}; // key: "分类:文本" 或 "文本" → value: { id, imgDir }
+const emotionImages = {}; // key: imgDir → value: { id: imageModule }
 
 // 自动加载所有JSON文件
 function loadEmotionData() {
@@ -10,19 +10,22 @@ function loadEmotionData() {
 
 		dataContext.keys().forEach(key => {
 			const categoryData = dataContext(key);
+			const imgDir = categoryData.imgDir || categoryData.category;
+
 			emotionCategories.push({
 				category: categoryData.category,
+				imgDir: imgDir,
 				emotions: categoryData.emotions
 			});
 
 			// 构建表情映射表，key格式: "分类:文本" 和 "文本"（兼容旧格式）
 			categoryData.emotions.forEach(item => {
 				const fullKey = `${categoryData.category}:${item.text}`;
-				emotionMap[fullKey] = item.id;
+				emotionMap[fullKey] = { id: item.id, imgDir };
 
 				// 为了兼容性，也保留纯文本映射（可能会被覆盖，以最后加载的为准）
 				if (!emotionMap[item.text]) {
-					emotionMap[item.text] = item.id;
+					emotionMap[item.text] = { id: item.id, imgDir };
 				}
 			});
 		});
@@ -35,25 +38,29 @@ function loadEmotionData() {
 	}
 }
 
-// 加载表情图片（从分类子目录加载）
+// 加载表情图片（从分类子目录加载，按目录名隔离）
 function loadEmotionImages() {
 	try {
 		const emotionContext = require.context('@/components/Emotion/emotionImgs', true, /\.(gif|png|jpg|jpeg)$/i);
 		emotionContext.keys().forEach(key => {
 			// key 格式: ./默认/0.gif 或 ./Sticker/105.png
-			// 跳过根目录下的文件，只读取子目录中的文件
 			const parts = key.split('/');
-			if (parts.length < 3) return; // 跳过 ./0.gif 这种根目录文件
+			// 跳过根目录下的文件，只读取子目录中的文件
+			if (parts.length < 3) return;
 
+			const dirName = parts[1]; // 子目录名，如 "默认"、"Sticker"
 			const filename = parts[parts.length - 1];
 			const match = filename.match(/(\d+)\.(gif|png|jpg|jpeg)$/i);
 			if (match) {
 				const id = match[1];
-				emotionImages[id] = emotionContext(key);
+				if (!emotionImages[dirName]) emotionImages[dirName] = {};
+				emotionImages[dirName][id] = emotionContext(key);
 			}
 		});
+
+		const totalCount = Object.values(emotionImages).reduce((sum, dir) => sum + Object.keys(dir).length, 0);
 		// eslint-disable-next-line no-console
-		console.log(`成功加载 ${Object.keys(emotionImages).length} 个表情图片（从分类目录）`);
+		console.log(`成功加载 ${totalCount} 个表情图片（${Object.keys(emotionImages).join(', ')}）`);
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.warn('表情图片加载失败，请检查图片路径:', error);
@@ -64,33 +71,38 @@ function loadEmotionImages() {
 loadEmotionData();
 loadEmotionImages();
 
-// 获取图片URL
-export function getImgUrl(id) {
-	const image = emotionImages[id];
-	if (image) {
-		return image;
+// 获取图片URL（需要指定 imgDir 来区分不同分类）
+export function getImgUrl(id, imgDir) {
+	if (imgDir && emotionImages[imgDir] && emotionImages[imgDir][id]) {
+		return emotionImages[imgDir][id];
 	}
-	return `/emotionImgs/默认/${id}.gif`;
+	// 回退：遍历所有目录查找
+	for (const dir of Object.keys(emotionImages)) {
+		if (emotionImages[dir][id]) {
+			return emotionImages[dir][id];
+		}
+	}
+	return null;
 }
 
 // 将表情文本转换为HTML图片标签
 export function emotion(res) {
 	const word = res.replace(/\[|\]/gi, '');
-	let id = emotionMap[word];
+	let mapping = emotionMap[word];
 
 	// 如果直接找不到，尝试在所有分类中查找
-	if (id === undefined || id === null) {
+	if (!mapping) {
 		for (const category of emotionCategories) {
 			const found = category.emotions.find(item => item.text === word);
 			if (found) {
-				id = found.id;
+				mapping = { id: found.id, imgDir: category.imgDir };
 				break;
 			}
 		}
 	}
 
-	if (id !== undefined && id !== null) {
-		const url = getImgUrl(id);
+	if (mapping) {
+		const url = getImgUrl(mapping.id, mapping.imgDir);
 		if (url) {
 			return `<img class="emoji-img" width="24" height="24" src="${url}" alt="${word}" title="${word}" />`;
 		}
@@ -124,29 +136,37 @@ export function parseMixedContent(content) {
 		.join('');
 }
 
-// 根据ID获取表情文本
-export function getEmotionTextById(id) {
-	for (const category of emotionCategories) {
-		const emotion = category.emotions.find(item => item.id === id);
-		if (emotion) {
-			return emotion.text;
+// 根据ID和分类获取表情文本
+export function getEmotionTextById(id, targetCategory) {
+	if (targetCategory) {
+		const cat = emotionCategories.find(c => c.category === targetCategory);
+		if (cat) {
+			const found = cat.emotions.find(item => item.id === id);
+			if (found) return found.text;
 		}
+	}
+	for (const category of emotionCategories) {
+		const found = category.emotions.find(item => item.id === id);
+		if (found) return found.text;
 	}
 	return '';
 }
 
 // 根据文本获取表情ID
 export function getEmotionIdByText(text) {
-	return emotionMap[text] !== undefined ? emotionMap[text] : -1;
+	const mapping = emotionMap[text];
+	return mapping ? mapping.id : -1;
 }
 
-// 获取所有表情分类
+// 获取所有表情分类（带图片URL）
 export function getAllCategories() {
 	return emotionCategories.map(cat => ({
 		category: cat.category,
+		imgDir: cat.imgDir,
 		emotions: cat.emotions.map(item => ({
 			...item,
-			url: getImgUrl(item.id)
+			imgDir: cat.imgDir,
+			url: getImgUrl(item.id, cat.imgDir)
 		}))
 	}));
 }
@@ -159,7 +179,8 @@ export function getAllEmotions() {
 			allEmotions.push({
 				...item,
 				category: cat.category,
-				url: getImgUrl(item.id)
+				imgDir: cat.imgDir,
+				url: getImgUrl(item.id, cat.imgDir)
 			});
 		});
 	});
@@ -167,8 +188,11 @@ export function getAllEmotions() {
 }
 
 // 检查表情图片是否可用
-export function checkEmotionAvailable(id) {
-	return !!emotionImages[id];
+export function checkEmotionAvailable(id, imgDir) {
+	if (imgDir) {
+		return !!(emotionImages[imgDir] && emotionImages[imgDir][id]);
+	}
+	return Object.values(emotionImages).some(dir => !!dir[id]);
 }
 
 // 导出兼容旧版的emotionData（已废弃，建议使用getAllEmotions）

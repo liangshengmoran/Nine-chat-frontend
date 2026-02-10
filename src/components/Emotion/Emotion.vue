@@ -3,7 +3,7 @@
 		<!-- 表情列表 -->
 		<ul :style="{ width: width, padding: `${padding}px` }" class="emoji-wrap">
 			<li v-for="item in currentEmotionList" :key="`${currentCategory}-${item.id}`" :data-code="item.id" :title="item.text" class="emoji" @click="handleClick(item)">
-				<img :alt="item.text" :src="getEmotionImgUrl(item.id)" />
+				<img :alt="item.text" :src="getEmotionImgUrl(item.id, item.imgDir)" />
 			</li>
 		</ul>
 		<!-- 底部分类标签 -->
@@ -73,8 +73,8 @@ export default {
 		handleClick(item) {
 			this.$emit("emotion", item);
 		},
-		getEmotionImgUrl(id) {
-			return getImgUrl(id);
+		getEmotionImgUrl(id, imgDir) {
+			return getImgUrl(id, imgDir);
 		},
 	},
 };
