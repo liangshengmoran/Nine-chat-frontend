@@ -77,6 +77,24 @@ export default {
 		});
 	},
 
+	/* Bot 编辑消息 - 原地更新内容（不改变类型） */
+	updateMessageContent(state, { id, message_content, message_type }) {
+		const messageIndex = state.messageList.findIndex(t => t.id === id);
+		if (messageIndex !== -1) {
+			const msg = state.messageList[messageIndex];
+			msg.message_content = message_content;
+			if (message_type) msg.message_type = message_type;
+			msg.edited = true;
+			// 触发 Vue 响应性更新
+			state.messageList = [...state.messageList];
+		}
+	},
+
+	/* Bot 正在输入状态 */
+	setBotTyping(state, info) {
+		state.botTypingInfo = info;
+	},
+
 	setCurrentMusicInfo(state, currentMusicInfo) {
 		const { music_info, music_lrc, music_src } = currentMusicInfo;
 		state.music_info = music_info;

@@ -194,6 +194,29 @@ export default {
     updateOnLineUserList({ on_line_user_list }) {
       this.setOnlineUserList(on_line_user_list);
     },
+
+    /* Bot 编辑了消息 */
+    messageUpdate({ code, data }) {
+      if (code === 1 && data) {
+        this.updateMessageContent(data);
+      }
+    },
+
+    /* Bot 删除/撤回消息 */
+    messageRecall({ code, data }) {
+      if (code === 1 && data) {
+        this.updateMessageList({ id: data.id, msg: `${data.user_nick || 'Bot'}撤回了一条消息` });
+      }
+    },
+
+    /* Bot 正在输入 */
+    botAction({ code, data }) {
+      if (code === 1 && data && data.action === 'typing') {
+        this.setBotTyping({ bot_name: data.bot_name, room_id: data.room_id });
+        clearTimeout(this._botTypingTimer);
+        this._botTypingTimer = setTimeout(() => this.setBotTyping(null), 3000);
+      }
+    },
   },
   computed: {
     ...mapState([
@@ -257,6 +280,8 @@ export default {
       "emptyMessageDataList",
       "setRoomId",
       "updateMessageList",
+      "updateMessageContent",
+      "setBotTyping",
       "setUnReadMsgNum",
       "setRoomInfo",
       "setGlobalRoomConfig",

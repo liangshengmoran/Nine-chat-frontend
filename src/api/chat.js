@@ -7,3 +7,5 @@ export const createRoom = data => request('post', '/chat/createRoom', data);
 export const queryRoomInfo = data => request('get', '/chat/roomInfo', data);
 
 export const updateRoomInfo = data => request('post', '/chat/updateRoomInfo', data);
+
+export const getRoomBotCommands = data => request('get', '/chat/botCommands', data);

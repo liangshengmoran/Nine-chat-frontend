@@ -45,7 +45,8 @@ module.exports = {
 			{
 				allowIndentationTabs: true
 			}
-		]
+		],
+		'no-underscore-dangle': 0
 	},
 	globals: {
 		log: true

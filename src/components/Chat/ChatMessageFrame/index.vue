@@ -1,6 +1,15 @@
 <template>
 	<div class="message-frame">
 		<chat-toolbar ref="toolbar" @emotion="handlerEmotion" />
+		<!-- Bot 命令建议下拉 -->
+		<div v-if="showCommandMenu" class="command-menu">
+			<div v-for="cmd in filteredCommands" :key="cmd.fullCommand" class="command-item" @mousedown.prevent="selectCommand(cmd)">
+				<span class="command-name">/{{ cmd.command }}</span>
+				<span class="command-desc">{{ cmd.description }}</span>
+				<span class="command-bot">{{ cmd.bot_name }}</span>
+			</div>
+			<div v-if="filteredCommands.length === 0" class="command-empty">没有匹配的命令</div>
+		</div>
 		<div :class="['message-frame-input']">
 			<!-- 图片类型文件 -->
 			<img v-if="fileInfo && allowImgExt.includes(fileInfo.ext)" :class="['message-frame-input-img']" :src="preImgBlob" alt="" />
@@ -15,7 +24,7 @@
 				</div>
 			</div>
 			<!-- 文字消息 -->
-			<textarea ref="messageInput" v-model.trim="message" placeholder="点击回车键发送消息" class="message-frame-input-text" @keydown="sendMsg" @paste="pasting" />
+			<textarea ref="messageInput" v-model.trim="message" placeholder="点击回车键发送消息" class="message-frame-input-text" @keydown="sendMsg" @paste="pasting" @input="onInputChange" />
 		</div>
 		<div v-if="quoteMessage" class="quote" @click="focusInput">
 			<span class="quote-panel">
@@ -53,7 +62,9 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 import ChatToolbar from "@/components/Chat/ChatToolbar";
+import { getRoomBotCommands } from "@/api/chat";
 
 const file_upload_url = `${process.env.VUE_APP_BASE_API}/upload/file`
 export default {
@@ -67,9 +78,26 @@ export default {
       filename: null,
       fileInfo: null,
       loading: false,
+      botCommands: [], // Bot命令列表 [{ command, description, bot_name, fullCommand }]
+      showCommandMenu: false, // 是否显示命令建议
     };
   },
+  computed: {
+    ...mapState(["room_id"]),
+    filteredCommands() {
+      if (!this.message || !this.message.startsWith('/')) return this.botCommands;
+      const input = this.message.slice(1).toLowerCase();
+      if (!input) return this.botCommands;
+      return this.botCommands.filter(cmd => cmd.command.toLowerCase().startsWith(input));
+    },
+  },
   watch: {
+    room_id: {
+      immediate: true,
+      handler(val) {
+        if (val) this.fetchBotCommands(val);
+      },
+    },
     /* TODO 粘贴图片时导致粘贴完文件名会拼接到input value后，暂未解决，先特殊处理 */
     message(n, o) {
       if (this.filename && n.includes(this.filename)) return (this.message = o);
@@ -240,6 +268,43 @@ export default {
     formatSeize(size) {
       return size > 1024 ? `${(size / 1024).toFixed(1)}k` : `${size}b`;
     },
+
+    /* 获取房间Bot命令 */
+    async fetchBotCommands(roomId) {
+      try {
+        const res = await getRoomBotCommands({ room_id: roomId });
+        const bots = res.data || res || [];
+        const commands = [];
+        (Array.isArray(bots) ? bots : []).forEach((bot) => {
+          if (bot.commands && Array.isArray(bot.commands)) {
+            bot.commands.forEach((cmd) => {
+              commands.push({
+                command: cmd.command,
+                description: cmd.description,
+                bot_name: bot.bot_name,
+                fullCommand: `/${  cmd.command}`,
+              });
+            });
+          }
+        });
+        this.botCommands = commands;
+      } catch (e) {
+        this.botCommands = [];
+      }
+    },
+
+    /* 输入变化时检测是否显示命令菜单 */
+    onInputChange() {
+      const raw = this.$refs.messageInput ? this.$refs.messageInput.value : '';
+      this.showCommandMenu = raw.startsWith('/') && this.botCommands.length > 0;
+    },
+
+    /* 选择命令 */
+    selectCommand(cmd) {
+      this.message = `${cmd.fullCommand  } `;
+      this.showCommandMenu = false;
+      this.$refs.messageInput.focus();
+    },
   },
 };
 </script>
@@ -249,6 +314,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
   .progress {
     width: 100%;
     height: 2px;
@@ -348,6 +414,68 @@ export default {
   }
   .file-icon {
     margin-left: 30px;
+  }
+}
+
+/* Bot 命令建议菜单 */
+.command-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 133, 255, 0.12);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 133, 255, 0.1), 0 -1px 3px rgba(0, 0, 0, 0.06);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 100;
+  .command-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+    &:hover {
+      background: linear-gradient(90deg, rgba(0, 133, 255, 0.08) 0%, transparent 100%);
+      border-left-color: #0085ff;
+    }
+    &:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+    .command-name {
+      background: linear-gradient(135deg, #0085ff, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      font-size: 14px;
+      min-width: 80px;
+    }
+    .command-desc {
+      color: #666;
+      font-size: 13px;
+      flex: 1;
+    }
+    .command-bot {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, rgba(0, 133, 255, 0.1), rgba(0, 198, 255, 0.1));
+      color: #0085ff;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+  }
+  .command-empty {
+    padding: 14px;
+    color: #aaa;
+    font-size: 13px;
+    text-align: center;
   }
 }
 </style>

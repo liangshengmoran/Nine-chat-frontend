@@ -27,12 +27,22 @@
 							<icon v-if="item.user_info && item.user_info.is_bot" name="robot_label" scale="2" class="bot-icon" />
 						</span>
 
-						<!-- 文字消息 -->
+						<!-- 文字消息 (Markdown) -->
 						<span
-							v-if="
-                item.message_type === 'text' && !isUrl(item.message_content)
-              "
-							:class="['message', textClass(item)]"
+							v-if="item.message_type === 'text' && item.parse_mode === 'markdown' && !isUrl(item.message_content)"
+							:class="['message', 'markdown-body', textClass(item), { 'mention-highlight': isMentioned(item) }]"
+							v-html="renderMarkdown(item.message_content)"
+						></span>
+						<!-- 文字消息 (HTML) -->
+						<span
+							v-else-if="item.message_type === 'text' && item.parse_mode === 'html' && !isUrl(item.message_content)"
+							:class="['message', textClass(item), { 'mention-highlight': isMentioned(item) }]"
+							v-html="sanitizeHtml(item.message_content)"
+						></span>
+						<!-- 文字消息 (普通) -->
+						<span
+							v-else-if="item.message_type === 'text' && !isUrl(item.message_content)"
+							:class="['message', textClass(item), { 'mention-highlight': isMentioned(item) }]"
 							v-html="replaceEmotionText(item.message_content)"
 						></span>
 						<!-- 链接地址 -->
@@ -43,6 +53,16 @@
 						<!-- 图片消息 -->
 						<span v-if="imgMessageType.includes(item.message_type)" :class="['msg-img', { 'msg-emo': item.message_type === 'emo' }]">
 							<img :ref="`img__${item.id}`" :src="item.message_content.url" @click="previewImg(item)" />
+						</span>
+						<!-- Bot 文件消息 -->
+						<span v-if="item.message_type === 'file'" class="msg-file-bot">
+							<div class="msg-file-bot-panel">
+								<icon name="chat-frame-unknow-file" scale="3" class="file-icon" />
+								<div class="file-detail">
+									<a :href="getFileContent(item).file_url" target="_blank" class="file-name">{{ getFileContent(item).file_name }}</a>
+									<span v-if="getFileContent(item).caption" class="file-caption">{{ getFileContent(item).caption }}</span>
+								</div>
+							</div>
 						</span>
 						<!-- 非图片的类型的其他信息 不包含公告提示和文字图片等所有类型 -->
 						<span v-if="otherFileType(item.message_type)" class="msg-other">
@@ -110,6 +130,14 @@
 							</span>
 						</span>
 
+						<!-- 已编辑标记 -->
+						<span v-if="item.edited" class="edited-tag">(已编辑)</span>
+						<!-- Inline Keyboard 按钮 -->
+						<div v-if="item.reply_markup && item.reply_markup.inline_keyboard" class="inline-keyboard">
+							<div v-for="(row, ri) in item.reply_markup.inline_keyboard" :key="ri" class="inline-keyboard-row">
+								<button v-for="(btn, bi) in row" :key="bi" class="inline-keyboard-btn" @click.stop="handleInlineKeyboardClick(item, btn)">{{ btn.text }}</button>
+							</div>
+						</div>
 						<!-- 时间 -->
 						<span class="time">{{ formatChatTime(item.createdAt) }}</span>
 					</div>
@@ -150,14 +178,28 @@
 			</span>
 		</div>
 
+		<!-- Bot 正在输入提示 -->
+		<div v-if="botTypingInfo" class="bot-typing-indicator">
+			<span class="typing-dots"><span></span><span></span><span></span></span>
+			{{ botTypingInfo.bot_name }} 正在输入...
+		</div>
+
 		<div id="panelEnd" ref="end"></div>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapState } from "vuex";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 import { replaceEmotionText } from "@/components/Emotion/emotion.js";
 import { throttle, formatChatTime } from "@/utils/tools";
+
+// 配置 marked
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+});
 
 export default {
   props: {
@@ -182,7 +224,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["messageList", "un_read_msg_num"]),
+    ...mapState(["messageList", "un_read_msg_num", "botTypingInfo"]),
     ...mapGetters(["mine_id", "room_admin_id"]),
 
     /* 获取所有info类型消息 */
@@ -287,6 +329,7 @@ export default {
           ...this.imgMessageType,
           ...this.tipsMessageType,
           "text",
+          "file",
         ].includes(type);
     },
 
@@ -450,6 +493,54 @@ export default {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+    },
+
+    /* Markdown 渲染 */
+    renderMarkdown(content) {
+      try {
+        const text = typeof content === 'string' ? content : JSON.stringify(content);
+        const html = marked(text);
+        return DOMPurify.sanitize(html);
+      } catch (e) {
+        return content;
+      }
+    },
+
+    /* HTML 消息安全过滤 */
+    sanitizeHtml(content) {
+      return DOMPurify.sanitize(typeof content === 'string' ? content : '');
+    },
+
+    /* 解析文件消息内容 */
+    getFileContent(item) {
+      try {
+        return typeof item.message_content === 'string'
+          ? JSON.parse(item.message_content)
+          : item.message_content;
+      } catch (e) {
+        return { file_url: '', file_name: '未知文件', caption: '' };
+      }
+    },
+
+    /* 检测当前用户是否被 @提及 */
+    isMentioned(item) {
+      if (!item.mentions || !item.mentions.length) return false;
+      return item.mentions.includes(this.mine_id);
+    },
+
+    /* Inline Keyboard 按钮点击 */
+    handleInlineKeyboardClick(message, btn) {
+      if (btn.url) {
+        window.open(btn.url, '_blank');
+        return;
+      }
+      if (btn.callback_data) {
+        this.$socket.client.emit('callbackQuery', {
+          message_id: message.id,
+          bot_id: message.user_info?.bot_id,
+          data: btn.callback_data,
+        });
+      }
     },
   },
 };
@@ -679,11 +770,15 @@ export default {
         .bot-icon {
           margin-left: 4px;
           vertical-align: middle;
+          filter: drop-shadow(0 1px 2px rgba(0, 133, 255, 0.4));
         }
         /* Bot 昵称样式 */
         .bot-name {
-          color: #0085FF;
-          font-weight: 600;
+          background: linear-gradient(135deg, #0085ff, #00c6ff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-weight: 700;
         }
       }
 
@@ -706,22 +801,7 @@ export default {
       .message {
         background-color: #a9e87a;
         color: #000;
-        position: relative;
         font-size: 14px;
-        &::before {
-          content: "";
-          position: absolute;
-          top: -5px;
-          left: auto;
-          right: -13px;
-          width: 15px;
-          height: 15px;
-          border: 0 solid transparent;
-          border-bottom-width: 12px;
-          border-bottom-color: currentColor;
-          border-radius: 0 0 15px 0;
-          color: #a9e87a;
-        }
       }
     }
   }
@@ -736,21 +816,6 @@ export default {
       .message {
         background-color: #eee;
         color: #000;
-        position: relative;
-        &::after {
-          content: "";
-          position: absolute;
-          top: -5px;
-          left: -13px;
-          right: auto;
-          width: 15px;
-          height: 15px;
-          border: 0 solid transparent;
-          border-bottom-width: 12px;
-          border-bottom-color: currentColor;
-          border-radius: 0 0 0 15px;
-          color: #eee;
-        }
       }
     }
   }
@@ -798,23 +863,161 @@ export default {
 .admin-text {
   background: #000 !important;
   color: #fff !important;
-  &::before {
-    color: #000 !important;
-  }
-  &::after {
-    color: #000 !important;
-  }
 }
 
 /* homeowner */
 .homeowner {
   background: #f0bc77 !important;
   color: #fff !important;
-  &::before {
-    color: #f0bc77 !important;
+}
+
+/* Inline Keyboard 按钮 */
+.inline-keyboard {
+  margin-top: 8px;
+  &-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 5px;
   }
-  &::after {
-    color: #f0bc77 !important;
+  &-btn {
+    flex: 1;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(0, 133, 255, 0.12) 0%, rgba(0, 198, 255, 0.12) 100%);
+    color: #0085ff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    &:hover {
+      background: linear-gradient(135deg, #0085ff 0%, #00c6ff 100%);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 133, 255, 0.3);
+    }
+    &:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 1px 4px rgba(0, 133, 255, 0.2);
+    }
   }
+}
+
+/* Bot 文件消息 */
+.msg-file-bot {
+  margin-top: 8px;
+  &-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(0, 133, 255, 0.06) 0%, rgba(0, 198, 255, 0.06) 100%);
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 133, 255, 0.08);
+    transition: all 0.25s ease;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 133, 255, 0.15);
+    }
+    .file-icon {
+      color: #0085ff;
+      flex-shrink: 0;
+      filter: drop-shadow(0 1px 2px rgba(0, 133, 255, 0.3));
+    }
+    .file-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      .file-name {
+        color: inherit;
+        font-weight: 500;
+        text-decoration: none;
+        word-break: break-all;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .file-caption {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+  }
+}
+
+/* Bot 正在输入 */
+.bot-typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  margin: 4px 15px;
+  font-size: 12px;
+  color: #666;
+  background: linear-gradient(135deg, rgba(0, 133, 255, 0.06) 0%, rgba(0, 198, 255, 0.08) 100%);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 0.3s ease;
+  .typing-dots {
+    display: flex;
+    gap: 3px;
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0085ff, #00c6ff);
+      animation: botBounce 1.4s infinite ease-in-out both;
+      &:nth-child(1) { animation-delay: -0.32s; }
+      &:nth-child(2) { animation-delay: -0.16s; }
+    }
+  }
+}
+@keyframes botBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 已编辑标记 */
+.edited-tag {
+  font-size: 11px;
+  color: #bbb;
+  margin-top: 2px;
+}
+
+/* @提及高亮 */
+.mention-highlight {
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.5);
+  border-radius: 6px;
+}
+
+/* Markdown 消息样式 */
+.markdown-body {
+  ::v-deep p { margin: 0 0 4px; }
+  ::v-deep code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  ::v-deep pre {
+    background: rgba(0,0,0,0.06);
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    code { background: none; padding: 0; }
+  }
+  ::v-deep ul, ::v-deep ol { padding-left: 16px; margin: 4px 0; }
+  ::v-deep blockquote {
+    margin: 4px 0;
+    padding-left: 10px;
+    border-left: 3px solid #ccc;
+    color: #888;
+  }
+  ::v-deep h1, ::v-deep h2, ::v-deep h3 { margin: 4px 0; }
+  ::v-deep a { color: #0085ff; }
 }
 </style>

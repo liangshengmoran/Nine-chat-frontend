@@ -14,6 +14,7 @@ export default function getDefaultValue() {
 		music_queue_list: [],
 		room_admin_info: {},
 		un_read_msg_num: 0, // 未读消息数
+		botTypingInfo: null, // Bot 正在输入状态 { bot_name, room_id }
 		pre_img: null,
 		room_info: null, // 此处的信息来自于初始化阶段，后续不会变更，页面使用的数据 以getters的room_info为准 来自ws实时更新的数据
 
