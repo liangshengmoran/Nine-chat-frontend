@@ -39,6 +39,17 @@
 				:class="[
           'header-right-item',
           'flex_center',
+          { 'active-menu': opt5.show },
+        ]"
+				@click.stop="openBox(5)"
+			>
+				<icon name="chat-music-auth" scale="1.8" class="icon" />
+				<span class="visible-xl ">账号</span>
+			</div>
+			<div
+				:class="[
+          'header-right-item',
+          'flex_center',
           { 'active-menu': opt1.show },
         ]"
 				@click.stop="openBox(1)"
@@ -87,6 +98,9 @@
 		<chat-popup :options="opt4" :top="60" :right="10" title="房间设置">
 			<room-setting />
 		</chat-popup>
+		<chat-popup :options="opt5" :top="60" :right="10" :height="450" title="音乐账号授权">
+			<music-auth />
+		</chat-popup>
 	</div>
 </template>
 
@@ -98,16 +112,18 @@ import OnlineList from "./components/OnLineList.vue";
 import RoomList from "./components/RoomList.vue";
 import PersionInfo from "./components/PersionInfo.vue";
 import RoomSetting from "./components/RoomSetting.vue";
+import MusicAuth from "./components/MusicAuth.vue";
 import ChatTips from "../ChatTips";
 
 export default {
-  components: { ChatPopup, OnlineList, RoomList, PersionInfo, RoomSetting,ChatTips },
+  components: { ChatPopup, OnlineList, RoomList, PersionInfo, RoomSetting, MusicAuth, ChatTips },
   data() {
     return {
       opt1: { show: false },
       opt2: { show: false },
       opt3: { show: false },
       opt4: { show: false },
+      opt5: { show: false },
       createRoomVisible: false,
     };
   },
