@@ -41,7 +41,7 @@ function loadEmotionData() {
 // 加载表情图片（从分类子目录加载，按目录名隔离）
 function loadEmotionImages() {
 	try {
-		const emotionContext = require.context('@/components/Emotion/emotionImgs', true, /\.(gif|png|jpg|jpeg)$/i);
+		const emotionContext = require.context('@/components/Emotion/emotionImgs', true, /\.(gif|png|jpg|jpeg|webp)$/i);
 		emotionContext.keys().forEach(key => {
 			// key 格式: ./默认/0.gif 或 ./Sticker/105.png
 			const parts = key.split('/');
@@ -50,7 +50,7 @@ function loadEmotionImages() {
 
 			const dirName = parts[1]; // 子目录名，如 "默认"、"Sticker"
 			const filename = parts[parts.length - 1];
-			const match = filename.match(/(\d+)\.(gif|png|jpg|jpeg)$/i);
+			const match = filename.match(/(\d+)\.(gif|png|jpg|jpeg|webp)$/i);
 			if (match) {
 				const id = match[1];
 				if (!emotionImages[dirName]) emotionImages[dirName] = {};
@@ -104,7 +104,7 @@ export function emotion(res) {
 	if (mapping) {
 		const url = getImgUrl(mapping.id, mapping.imgDir);
 		if (url) {
-			return `<img class="emoji-img" width="24" height="24" src="${url}" alt="${word}" title="${word}" />`;
+			return `<img class="emoji-img" width="24" height="24" src="${url}" alt="[${word}]" title="${word}" />`;
 		}
 	}
 	return res;
@@ -114,7 +114,7 @@ export function emotion(res) {
 export function replaceEmotionText(content) {
 	if (!content || typeof content !== 'string') return '';
 	// 支持中文、英文、数字的表情名称
-	return content.replace(/\[[\u4E00-\u9FA5a-zA-Z0-9:]{1,30}\]/gi, emotion);
+	return content.replace(/\[[^\[\]]{1,30}\]/g, emotion);
 }
 
 // 解析混合内容（文本+表情）
@@ -122,7 +122,7 @@ export function parseMixedContent(content) {
 	if (!content || typeof content !== 'string') return '';
 
 	// 更灵活的正则匹配，支持中英文数字混合的表情名称
-	const regex = /(\[[\u4E00-\u9FA5a-zA-Z0-9:]{1,30}\])/g;
+	const regex = /(\[[^\[\]]{1,30}\])/g;
 	const parts = content.split(regex);
 
 	return parts

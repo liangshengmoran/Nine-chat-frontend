@@ -1,0 +1,510 @@
+{
+	"category": "闲鱼",
+	"imgDir": "Xianyu",
+	"emotions": [
+		{
+			"id": 0,
+			"text": "Xianyu:尊嘟假嘟"
+		},
+		{
+			"id": 1,
+			"text": "Xianyu:鸡哔你"
+		},
+		{
+			"id": 2,
+			"text": "Xianyu:谁懂啊"
+		},
+		{
+			"id": 3,
+			"text": "Xianyu:吗喽"
+		},
+		{
+			"id": 4,
+			"text": "Xianyu:功德+1"
+		},
+		{
+			"id": 5,
+			"text": "Xianyu:city不city啊"
+		},
+		{
+			"id": 6,
+			"text": "Xianyu:激推"
+		},
+		{
+			"id": 7,
+			"text": "Xianyu:微笑"
+		},
+		{
+			"id": 8,
+			"text": "Xianyu:龇牙"
+		},
+		{
+			"id": 9,
+			"text": "Xianyu:流泪"
+		},
+		{
+			"id": 10,
+			"text": "Xianyu:尴尬"
+		},
+		{
+			"id": 11,
+			"text": "Xianyu:撇嘴"
+		},
+		{
+			"id": 12,
+			"text": "Xianyu:破涕为笑"
+		},
+		{
+			"id": 13,
+			"text": "Xianyu:捂脸哭"
+		},
+		{
+			"id": 14,
+			"text": "Xianyu:害羞"
+		},
+		{
+			"id": 15,
+			"text": "Xianyu:感动"
+		},
+		{
+			"id": 16,
+			"text": "Xianyu:滴泪"
+		},
+		{
+			"id": 17,
+			"text": "Xianyu:暗中观察"
+		},
+		{
+			"id": 18,
+			"text": "Xianyu:偷笑"
+		},
+		{
+			"id": 19,
+			"text": "Xianyu:ok"
+		},
+		{
+			"id": 20,
+			"text": "Xianyu:送花"
+		},
+		{
+			"id": 21,
+			"text": "Xianyu:大哭"
+		},
+		{
+			"id": 22,
+			"text": "Xianyu:色"
+		},
+		{
+			"id": 23,
+			"text": "Xianyu:惊慌"
+		},
+		{
+			"id": 24,
+			"text": "Xianyu:惊讶"
+		},
+		{
+			"id": 25,
+			"text": "Xianyu:得意"
+		},
+		{
+			"id": 26,
+			"text": "Xianyu:睡"
+		},
+		{
+			"id": 27,
+			"text": "Xianyu:不好意思"
+		},
+		{
+			"id": 28,
+			"text": "Xianyu:托腮"
+		},
+		{
+			"id": 29,
+			"text": "Xianyu:发怒"
+		},
+		{
+			"id": 30,
+			"text": "Xianyu:难过"
+		},
+		{
+			"id": 31,
+			"text": "Xianyu:调皮"
+		},
+		{
+			"id": 32,
+			"text": "Xianyu:愉快"
+		},
+		{
+			"id": 33,
+			"text": "Xianyu:白眼"
+		},
+		{
+			"id": 34,
+			"text": "Xianyu:拒绝"
+		},
+		{
+			"id": 35,
+			"text": "Xianyu:期待"
+		},
+		{
+			"id": 36,
+			"text": "Xianyu:困"
+		},
+		{
+			"id": 37,
+			"text": "Xianyu:流汗"
+		},
+		{
+			"id": 38,
+			"text": "Xianyu:憨笑"
+		},
+		{
+			"id": 39,
+			"text": "Xianyu:耶"
+		},
+		{
+			"id": 40,
+			"text": "Xianyu:奋斗"
+		},
+		{
+			"id": 41,
+			"text": "Xianyu:咒骂"
+		},
+		{
+			"id": 42,
+			"text": "Xianyu:疑问"
+		},
+		{
+			"id": 43,
+			"text": "Xianyu:嘘"
+		},
+		{
+			"id": 44,
+			"text": "Xianyu:晕"
+		},
+		{
+			"id": 45,
+			"text": "Xianyu:开心到模糊"
+		},
+		{
+			"id": 46,
+			"text": "Xianyu:衰"
+		},
+		{
+			"id": 47,
+			"text": "Xianyu:委屈"
+		},
+		{
+			"id": 48,
+			"text": "Xianyu:再见"
+		},
+		{
+			"id": 49,
+			"text": "Xianyu:鼓掌"
+		},
+		{
+			"id": 50,
+			"text": "Xianyu:吐"
+		},
+		{
+			"id": 51,
+			"text": "Xianyu:坏笑"
+		},
+		{
+			"id": 52,
+			"text": "Xianyu:抠鼻"
+		},
+		{
+			"id": 53,
+			"text": "Xianyu:叹气"
+		},
+		{
+			"id": 54,
+			"text": "Xianyu:无聊"
+		},
+		{
+			"id": 55,
+			"text": "Xianyu:思考"
+		},
+		{
+			"id": 56,
+			"text": "Xianyu:呆"
+		},
+		{
+			"id": 57,
+			"text": "Xianyu:哇哦"
+		},
+		{
+			"id": 58,
+			"text": "Xianyu:飞吻"
+		},
+		{
+			"id": 59,
+			"text": "Xianyu:好喜欢"
+		},
+		{
+			"id": 60,
+			"text": "Xianyu:拜托"
+		},
+		{
+			"id": 61,
+			"text": "Xianyu:真棒"
+		},
+		{
+			"id": 62,
+			"text": "Xianyu:流鼻血"
+		},
+		{
+			"id": 63,
+			"text": "Xianyu:费解"
+		},
+		{
+			"id": 64,
+			"text": "Xianyu:秃头"
+		},
+		{
+			"id": 65,
+			"text": "Xianyu:嘿哈"
+		},
+		{
+			"id": 66,
+			"text": "Xianyu:吃土"
+		},
+		{
+			"id": 67,
+			"text": "Xianyu:机智"
+		},
+		{
+			"id": 68,
+			"text": "Xianyu:举杯"
+		},
+		{
+			"id": 69,
+			"text": "Xianyu:握手"
+		},
+		{
+			"id": 70,
+			"text": "Xianyu:挥手"
+		},
+		{
+			"id": 71,
+			"text": "Xianyu:yeah"
+		},
+		{
+			"id": 72,
+			"text": "Xianyu:666"
+		},
+		{
+			"id": 73,
+			"text": "Xianyu:棒"
+		},
+		{
+			"id": 74,
+			"text": "Xianyu:爱你"
+		},
+		{
+			"id": 75,
+			"text": "Xianyu:比心"
+		},
+		{
+			"id": 76,
+			"text": "Xianyu:感谢"
+		},
+		{
+			"id": 77,
+			"text": "Xianyu:拍手"
+		},
+		{
+			"id": 78,
+			"text": "Xianyu:拉钩"
+		},
+		{
+			"id": 79,
+			"text": "Xianyu:没钱"
+		},
+		{
+			"id": 80,
+			"text": "Xianyu:小刀"
+		},
+		{
+			"id": 81,
+			"text": "Xianyu:不刀"
+		},
+		{
+			"id": 82,
+			"text": "Xianyu:同出"
+		},
+		{
+			"id": 83,
+			"text": "Xianyu:递钱"
+		},
+		{
+			"id": 84,
+			"text": "Xianyu:数钱"
+		},
+		{
+			"id": 85,
+			"text": "Xianyu:打call"
+		},
+		{
+			"id": 86,
+			"text": "Xianyu:号外"
+		},
+		{
+			"id": 87,
+			"text": "Xianyu:包邮"
+		},
+		{
+			"id": 88,
+			"text": "Xianyu:求赞"
+		},
+		{
+			"id": 89,
+			"text": "Xianyu:非主流"
+		},
+		{
+			"id": 90,
+			"text": "Xianyu:吃瓜"
+		},
+		{
+			"id": 91,
+			"text": "Xianyu:种草"
+		},
+		{
+			"id": 92,
+			"text": "Xianyu:佛系"
+		},
+		{
+			"id": 93,
+			"text": "Xianyu:超便宜"
+		},
+		{
+			"id": 94,
+			"text": "Xianyu:拥抱"
+		},
+		{
+			"id": 95,
+			"text": "Xianyu:摊手"
+		},
+		{
+			"id": 96,
+			"text": "Xianyu:举手"
+		},
+		{
+			"id": 97,
+			"text": "Xianyu:蹲"
+		},
+		{
+			"id": 98,
+			"text": "Xianyu:跪了"
+		},
+		{
+			"id": 99,
+			"text": "Xianyu:拜"
+		},
+		{
+			"id": 100,
+			"text": "Xianyu:排"
+		},
+		{
+			"id": 101,
+			"text": "Xianyu:旺财"
+		},
+		{
+			"id": 102,
+			"text": "Xianyu:招财猫"
+		},
+		{
+			"id": 103,
+			"text": "Xianyu:酸了"
+		},
+		{
+			"id": 104,
+			"text": "Xianyu:鸭鸭"
+		},
+		{
+			"id": 105,
+			"text": "Xianyu:方了"
+		},
+		{
+			"id": 106,
+			"text": "Xianyu:白菜"
+		},
+		{
+			"id": 107,
+			"text": "Xianyu:桃子"
+		},
+		{
+			"id": 108,
+			"text": "Xianyu:打包"
+		},
+		{
+			"id": 109,
+			"text": "Xianyu:沙发"
+		},
+		{
+			"id": 110,
+			"text": "Xianyu:南"
+		},
+		{
+			"id": 111,
+			"text": "Xianyu:盯"
+		},
+		{
+			"id": 112,
+			"text": "Xianyu:hot"
+		},
+		{
+			"id": 113,
+			"text": "Xianyu:new"
+		},
+		{
+			"id": 114,
+			"text": "Xianyu:cool"
+		},
+		{
+			"id": 115,
+			"text": "Xianyu:1"
+		},
+		{
+			"id": 116,
+			"text": "Xianyu:可"
+		},
+		{
+			"id": 117,
+			"text": "Xianyu:搬砖"
+		},
+		{
+			"id": 118,
+			"text": "Xianyu:菜狗"
+		},
+		{
+			"id": 119,
+			"text": "Xianyu:开心面具"
+		},
+		{
+			"id": 120,
+			"text": "Xianyu:快递"
+		},
+		{
+			"id": 121,
+			"text": "Xianyu:裂开"
+		},
+		{
+			"id": 122,
+			"text": "Xianyu:啤酒"
+		},
+		{
+			"id": 123,
+			"text": "Xianyu:瑞思拜"
+		},
+		{
+			"id": 124,
+			"text": "Xianyu:小丑"
+		},
+		{
+			"id": 125,
+			"text": "Xianyu:爱心"
+		}
+	]
+}

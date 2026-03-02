@@ -1,0 +1,446 @@
+{
+	"category": "喜马拉雅",
+	"imgDir": "Ximalaya",
+	"emotions": [
+		{
+			"id": 0,
+			"text": "Ximalaya:呵呵"
+		},
+		{
+			"id": 1,
+			"text": "Ximalaya:嘻嘻"
+		},
+		{
+			"id": 2,
+			"text": "Ximalaya:哈哈"
+		},
+		{
+			"id": 3,
+			"text": "Ximalaya:太开心"
+		},
+		{
+			"id": 4,
+			"text": "Ximalaya:亲亲"
+		},
+		{
+			"id": 5,
+			"text": "Ximalaya:酷"
+		},
+		{
+			"id": 6,
+			"text": "Ximalaya:拜拜"
+		},
+		{
+			"id": 7,
+			"text": "Ximalaya:可爱"
+		},
+		{
+			"id": 8,
+			"text": "Ximalaya:馋嘴"
+		},
+		{
+			"id": 9,
+			"text": "Ximalaya:花心"
+		},
+		{
+			"id": 10,
+			"text": "Ximalaya:爱你"
+		},
+		{
+			"id": 11,
+			"text": "Ximalaya:汗"
+		},
+		{
+			"id": 12,
+			"text": "Ximalaya:鄙视"
+		},
+		{
+			"id": 13,
+			"text": "Ximalaya:怒"
+		},
+		{
+			"id": 14,
+			"text": "Ximalaya:失望"
+		},
+		{
+			"id": 15,
+			"text": "Ximalaya:害羞"
+		},
+		{
+			"id": 16,
+			"text": "Ximalaya:可怜"
+		},
+		{
+			"id": 17,
+			"text": "Ximalaya:悲伤"
+		},
+		{
+			"id": 18,
+			"text": "Ximalaya:泪"
+		},
+		{
+			"id": 19,
+			"text": "Ximalaya:闭嘴"
+		},
+		{
+			"id": 20,
+			"text": "Ximalaya:委屈"
+		},
+		{
+			"id": 21,
+			"text": "Ximalaya:挖鼻屎"
+		},
+		{
+			"id": 22,
+			"text": "Ximalaya:思考"
+		},
+		{
+			"id": 23,
+			"text": "Ximalaya:疑问"
+		},
+		{
+			"id": 24,
+			"text": "Ximalaya:嘘"
+		},
+		{
+			"id": 25,
+			"text": "Ximalaya:晕"
+		},
+		{
+			"id": 26,
+			"text": "Ximalaya:书呆子"
+		},
+		{
+			"id": 27,
+			"text": "Ximalaya:阴险"
+		},
+		{
+			"id": 28,
+			"text": "Ximalaya:做鬼脸"
+		},
+		{
+			"id": 29,
+			"text": "Ximalaya:黑线"
+		},
+		{
+			"id": 30,
+			"text": "Ximalaya:吃惊"
+		},
+		{
+			"id": 31,
+			"text": "Ximalaya:衰"
+		},
+		{
+			"id": 32,
+			"text": "Ximalaya:怒骂"
+		},
+		{
+			"id": 33,
+			"text": "Ximalaya:愤怒"
+		},
+		{
+			"id": 34,
+			"text": "Ximalaya:左哼哼"
+		},
+		{
+			"id": 35,
+			"text": "Ximalaya:右哼哼"
+		},
+		{
+			"id": 36,
+			"text": "Ximalaya:哼"
+		},
+		{
+			"id": 37,
+			"text": "Ximalaya:懒得理你"
+		},
+		{
+			"id": 38,
+			"text": "Ximalaya:打哈气"
+		},
+		{
+			"id": 39,
+			"text": "Ximalaya:钱"
+		},
+		{
+			"id": 40,
+			"text": "Ximalaya:偷笑"
+		},
+		{
+			"id": 41,
+			"text": "Ximalaya:鼓掌"
+		},
+		{
+			"id": 42,
+			"text": "Ximalaya:生病"
+		},
+		{
+			"id": 43,
+			"text": "Ximalaya:感冒"
+		},
+		{
+			"id": 44,
+			"text": "Ximalaya:困"
+		},
+		{
+			"id": 45,
+			"text": "Ximalaya:睡觉"
+		},
+		{
+			"id": 46,
+			"text": "Ximalaya:抓狂"
+		},
+		{
+			"id": 47,
+			"text": "Ximalaya:吐"
+		},
+		{
+			"id": 48,
+			"text": "Ximalaya:顶"
+		},
+		{
+			"id": 49,
+			"text": "Ximalaya:男孩儿"
+		},
+		{
+			"id": 50,
+			"text": "Ximalaya:女孩儿"
+		},
+		{
+			"id": 51,
+			"text": "Ximalaya:兔子"
+		},
+		{
+			"id": 52,
+			"text": "Ximalaya:熊猫"
+		},
+		{
+			"id": 53,
+			"text": "Ximalaya:猪头"
+		},
+		{
+			"id": 54,
+			"text": "Ximalaya:奥特曼"
+		},
+		{
+			"id": 55,
+			"text": "Ximalaya:互粉"
+		},
+		{
+			"id": 56,
+			"text": "Ximalaya:神马"
+		},
+		{
+			"id": 57,
+			"text": "Ximalaya:萌"
+		},
+		{
+			"id": 58,
+			"text": "Ximalaya:囧"
+		},
+		{
+			"id": 59,
+			"text": "Ximalaya:给力"
+		},
+		{
+			"id": 60,
+			"text": "Ximalaya:心"
+		},
+		{
+			"id": 61,
+			"text": "Ximalaya:爱心传递"
+		},
+		{
+			"id": 62,
+			"text": "Ximalaya:伤心"
+		},
+		{
+			"id": 63,
+			"text": "Ximalaya:帅"
+		},
+		{
+			"id": 64,
+			"text": "Ximalaya:威武"
+		},
+		{
+			"id": 65,
+			"text": "Ximalaya:喜"
+		},
+		{
+			"id": 66,
+			"text": "Ximalaya:发红包"
+		},
+		{
+			"id": 67,
+			"text": "Ximalaya:握手"
+		},
+		{
+			"id": 68,
+			"text": "Ximalaya:耶"
+		},
+		{
+			"id": 69,
+			"text": "Ximalaya:赞"
+		},
+		{
+			"id": 70,
+			"text": "Ximalaya:ok"
+		},
+		{
+			"id": 71,
+			"text": "Ximalaya:good"
+		},
+		{
+			"id": 72,
+			"text": "Ximalaya:弱"
+		},
+		{
+			"id": 73,
+			"text": "Ximalaya:最差"
+		},
+		{
+			"id": 74,
+			"text": "Ximalaya:不要"
+		},
+		{
+			"id": 75,
+			"text": "Ximalaya:拳头"
+		},
+		{
+			"id": 76,
+			"text": "Ximalaya:haha"
+		},
+		{
+			"id": 77,
+			"text": "Ximalaya:太阳"
+		},
+		{
+			"id": 78,
+			"text": "Ximalaya:月亮"
+		},
+		{
+			"id": 79,
+			"text": "Ximalaya:蛋糕"
+		},
+		{
+			"id": 80,
+			"text": "Ximalaya:咖啡"
+		},
+		{
+			"id": 81,
+			"text": "Ximalaya:干杯"
+		},
+		{
+			"id": 82,
+			"text": "Ximalaya:西瓜"
+		},
+		{
+			"id": 83,
+			"text": "Ximalaya:礼物"
+		},
+		{
+			"id": 84,
+			"text": "Ximalaya:鲜花"
+		},
+		{
+			"id": 85,
+			"text": "Ximalaya:落叶"
+		},
+		{
+			"id": 86,
+			"text": "Ximalaya:绿丝带"
+		},
+		{
+			"id": 87,
+			"text": "Ximalaya:红丝带"
+		},
+		{
+			"id": 88,
+			"text": "Ximalaya:围观"
+		},
+		{
+			"id": 89,
+			"text": "Ximalaya:雪人"
+		},
+		{
+			"id": 90,
+			"text": "Ximalaya:钟"
+		},
+		{
+			"id": 91,
+			"text": "Ximalaya:微风"
+		},
+		{
+			"id": 92,
+			"text": "Ximalaya:下雨"
+		},
+		{
+			"id": 93,
+			"text": "Ximalaya:雪"
+		},
+		{
+			"id": 94,
+			"text": "Ximalaya:沙尘暴"
+		},
+		{
+			"id": 95,
+			"text": "Ximalaya:浮云"
+		},
+		{
+			"id": 96,
+			"text": "Ximalaya:足球"
+		},
+		{
+			"id": 97,
+			"text": "Ximalaya:手套"
+		},
+		{
+			"id": 98,
+			"text": "Ximalaya:围脖"
+		},
+		{
+			"id": 99,
+			"text": "Ximalaya:温暖帽子"
+		},
+		{
+			"id": 100,
+			"text": "Ximalaya:自行车"
+		},
+		{
+			"id": 101,
+			"text": "Ximalaya:汽车"
+		},
+		{
+			"id": 102,
+			"text": "Ximalaya:飞机"
+		},
+		{
+			"id": 103,
+			"text": "Ximalaya:手机"
+		},
+		{
+			"id": 104,
+			"text": "Ximalaya:音乐"
+		},
+		{
+			"id": 105,
+			"text": "Ximalaya:话筒"
+		},
+		{
+			"id": 106,
+			"text": "Ximalaya:照相机"
+		},
+		{
+			"id": 107,
+			"text": "Ximalaya:电影"
+		},
+		{
+			"id": 108,
+			"text": "Ximalaya:风扇"
+		},
+		{
+			"id": 109,
+			"text": "Ximalaya:实习"
+		}
+	]
+}

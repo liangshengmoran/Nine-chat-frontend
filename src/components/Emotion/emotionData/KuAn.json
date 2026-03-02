@@ -1,0 +1,610 @@
+{
+	"category": "酷安",
+	"imgDir": "KuAn",
+	"emotions": [
+		{
+			"id": 0,
+			"text": "KuAn:哈哈哈"
+		},
+		{
+			"id": 1,
+			"text": "KuAn:惊讶"
+		},
+		{
+			"id": 2,
+			"text": "KuAn:呲牙"
+		},
+		{
+			"id": 3,
+			"text": "KuAn:流泪"
+		},
+		{
+			"id": 4,
+			"text": "KuAn:可爱"
+		},
+		{
+			"id": 5,
+			"text": "KuAn:微笑"
+		},
+		{
+			"id": 6,
+			"text": "KuAn:呵呵"
+		},
+		{
+			"id": 7,
+			"text": "KuAn:撇嘴"
+		},
+		{
+			"id": 8,
+			"text": "KuAn:色"
+		},
+		{
+			"id": 9,
+			"text": "KuAn:傲慢"
+		},
+		{
+			"id": 10,
+			"text": "KuAn:疑问"
+		},
+		{
+			"id": 11,
+			"text": "KuAn:无语"
+		},
+		{
+			"id": 12,
+			"text": "KuAn:坏笑"
+		},
+		{
+			"id": 13,
+			"text": "KuAn:鄙视"
+		},
+		{
+			"id": 14,
+			"text": "KuAn:发怒"
+		},
+		{
+			"id": 15,
+			"text": "KuAn:爆怒"
+		},
+		{
+			"id": 16,
+			"text": "KuAn:托腮"
+		},
+		{
+			"id": 17,
+			"text": "KuAn:吐舌"
+		},
+		{
+			"id": 18,
+			"text": "KuAn:汗"
+		},
+		{
+			"id": 19,
+			"text": "KuAn:抠鼻"
+		},
+		{
+			"id": 20,
+			"text": "KuAn:亲亲"
+		},
+		{
+			"id": 21,
+			"text": "KuAn:喷血"
+		},
+		{
+			"id": 22,
+			"text": "KuAn:笑眼"
+		},
+		{
+			"id": 23,
+			"text": "KuAn:睡"
+		},
+		{
+			"id": 24,
+			"text": "KuAn:捂嘴笑"
+		},
+		{
+			"id": 25,
+			"text": "KuAn:再见"
+		},
+		{
+			"id": 26,
+			"text": "KuAn:可怜"
+		},
+		{
+			"id": 27,
+			"text": "KuAn:笑哭"
+		},
+		{
+			"id": 28,
+			"text": "KuAn:强"
+		},
+		{
+			"id": 29,
+			"text": "KuAn:弱"
+		},
+		{
+			"id": 30,
+			"text": "KuAn:抱拳"
+		},
+		{
+			"id": 31,
+			"text": "KuAn:ok"
+		},
+		{
+			"id": 32,
+			"text": "KuAn:嘿哈"
+		},
+		{
+			"id": 33,
+			"text": "KuAn:捂脸"
+		},
+		{
+			"id": 34,
+			"text": "KuAn:机智"
+		},
+		{
+			"id": 35,
+			"text": "KuAn:耶"
+		},
+		{
+			"id": 36,
+			"text": "KuAn:我最美"
+		},
+		{
+			"id": 37,
+			"text": "KuAn:酷"
+		},
+		{
+			"id": 38,
+			"text": "KuAn:黑线"
+		},
+		{
+			"id": 39,
+			"text": "KuAn:喷"
+		},
+		{
+			"id": 40,
+			"text": "KuAn:阴险"
+		},
+		{
+			"id": 41,
+			"text": "KuAn:难过"
+		},
+		{
+			"id": 42,
+			"text": "KuAn:委屈"
+		},
+		{
+			"id": 43,
+			"text": "KuAn:吃瓜"
+		},
+		{
+			"id": 44,
+			"text": "KuAn:喝酒"
+		},
+		{
+			"id": 45,
+			"text": "KuAn:噗"
+		},
+		{
+			"id": 46,
+			"text": "KuAn:微微一笑"
+		},
+		{
+			"id": 47,
+			"text": "KuAn:欢呼"
+		},
+		{
+			"id": 48,
+			"text": "KuAn:白眼"
+		},
+		{
+			"id": 49,
+			"text": "KuAn:耐克嘴"
+		},
+		{
+			"id": 50,
+			"text": "KuAn:t耐克嘴"
+		},
+		{
+			"id": 51,
+			"text": "KuAn:害羞"
+		},
+		{
+			"id": 52,
+			"text": "KuAn:无奈"
+		},
+		{
+			"id": 53,
+			"text": "KuAn:皱眉"
+		},
+		{
+			"id": 54,
+			"text": "KuAn:qqdoge"
+		},
+		{
+			"id": 55,
+			"text": "KuAn:发呆"
+		},
+		{
+			"id": 56,
+			"text": "KuAn:舒服"
+		},
+		{
+			"id": 57,
+			"text": "KuAn:懒得理"
+		},
+		{
+			"id": 58,
+			"text": "KuAn:不开心"
+		},
+		{
+			"id": 59,
+			"text": "KuAn:挑眉坏笑"
+		},
+		{
+			"id": 60,
+			"text": "KuAn:害怕"
+		},
+		{
+			"id": 61,
+			"text": "KuAn:哼唧"
+		},
+		{
+			"id": 62,
+			"text": "KuAn:挨打"
+		},
+		{
+			"id": 63,
+			"text": "KuAn:假笑"
+		},
+		{
+			"id": 64,
+			"text": "KuAn:偷看"
+		},
+		{
+			"id": 65,
+			"text": "KuAn:喝茶"
+		},
+		{
+			"id": 66,
+			"text": "KuAn:哦吼吼"
+		},
+		{
+			"id": 67,
+			"text": "KuAn:掩面笑"
+		},
+		{
+			"id": 68,
+			"text": "KuAn:表面哭泣"
+		},
+		{
+			"id": 69,
+			"text": "KuAn:表面开心"
+		},
+		{
+			"id": 70,
+			"text": "KuAn:滑稽"
+		},
+		{
+			"id": 71,
+			"text": "KuAn:流汗滑稽"
+		},
+		{
+			"id": 72,
+			"text": "KuAn:受虐滑稽"
+		},
+		{
+			"id": 73,
+			"text": "KuAn:cos滑稽"
+		},
+		{
+			"id": 74,
+			"text": "KuAn:斗鸡眼滑稽"
+		},
+		{
+			"id": 75,
+			"text": "KuAn:墨镜滑稽"
+		},
+		{
+			"id": 76,
+			"text": "KuAn:小嘴滑稽"
+		},
+		{
+			"id": 77,
+			"text": "KuAn:针不戳"
+		},
+		{
+			"id": 78,
+			"text": "KuAn:列文虎克"
+		},
+		{
+			"id": 79,
+			"text": "KuAn:真正的音乐"
+		},
+		{
+			"id": 80,
+			"text": "KuAn:感知不强"
+		},
+		{
+			"id": 81,
+			"text": "KuAn:给我整一个"
+		},
+		{
+			"id": 82,
+			"text": "KuAn:yyds"
+		},
+		{
+			"id": 83,
+			"text": "KuAn:doge"
+		},
+		{
+			"id": 84,
+			"text": "KuAn:doge笑哭"
+		},
+		{
+			"id": 85,
+			"text": "KuAn:doge呵斥"
+		},
+		{
+			"id": 86,
+			"text": "KuAn:doge原谅ta"
+		},
+		{
+			"id": 87,
+			"text": "KuAn:喵喵"
+		},
+		{
+			"id": 88,
+			"text": "KuAn:二哈"
+		},
+		{
+			"id": 89,
+			"text": "KuAn:二哈盯"
+		},
+		{
+			"id": 90,
+			"text": "KuAn:爱心"
+		},
+		{
+			"id": 91,
+			"text": "KuAn:心碎"
+		},
+		{
+			"id": 92,
+			"text": "KuAn:玫瑰"
+		},
+		{
+			"id": 93,
+			"text": "KuAn:凋谢"
+		},
+		{
+			"id": 94,
+			"text": "KuAn:菜刀"
+		},
+		{
+			"id": 95,
+			"text": "KuAn:牛啤"
+		},
+		{
+			"id": 96,
+			"text": "KuAn:py交易"
+		},
+		{
+			"id": 97,
+			"text": "KuAn:绿药丸"
+		},
+		{
+			"id": 98,
+			"text": "KuAn:红药丸"
+		},
+		{
+			"id": 99,
+			"text": "KuAn:酷安"
+		},
+		{
+			"id": 100,
+			"text": "KuAn:酷安钓鱼"
+		},
+		{
+			"id": 101,
+			"text": "KuAn:绿帽"
+		},
+		{
+			"id": 102,
+			"text": "KuAn:酷安绿帽"
+		},
+		{
+			"id": 103,
+			"text": "KuAn:火把"
+		},
+		{
+			"id": 104,
+			"text": "KuAn:夏阁艾迪剑"
+		},
+		{
+			"id": 105,
+			"text": "KuAn:下次一定"
+		},
+		{
+			"id": 106,
+			"text": "KuAn:酷安土豆"
+		},
+		{
+			"id": 107,
+			"text": "KuAn:头条通知书"
+		},
+		{
+			"id": 108,
+			"text": "KuAn:酷币"
+		},
+		{
+			"id": 109,
+			"text": "KuAn:酷币1分"
+		},
+		{
+			"id": 110,
+			"text": "KuAn:酷币2分"
+		},
+		{
+			"id": 111,
+			"text": "KuAn:酷币5分"
+		},
+		{
+			"id": 112,
+			"text": "KuAn:酷币1毛"
+		},
+		{
+			"id": 113,
+			"text": "KuAn:酷币2毛"
+		},
+		{
+			"id": 114,
+			"text": "KuAn:酷币5毛"
+		},
+		{
+			"id": 115,
+			"text": "KuAn:酷币1块"
+		},
+		{
+			"id": 116,
+			"text": "KuAn:酷币2块"
+		},
+		{
+			"id": 117,
+			"text": "KuAn:酷币5块"
+		},
+		{
+			"id": 118,
+			"text": "KuAn:酷币10块"
+		},
+		{
+			"id": 119,
+			"text": "KuAn:酷币20块"
+		},
+		{
+			"id": 120,
+			"text": "KuAn:酷币50块"
+		},
+		{
+			"id": 121,
+			"text": "KuAn:酷币100块"
+		},
+		{
+			"id": 122,
+			"text": "KuAn:酷币1$"
+		},
+		{
+			"id": 123,
+			"text": "KuAn:酷币2$"
+		},
+		{
+			"id": 124,
+			"text": "KuAn:酷币5$"
+		},
+		{
+			"id": 125,
+			"text": "KuAn:酷币1€"
+		},
+		{
+			"id": 126,
+			"text": "KuAn:酷币2€"
+		},
+		{
+			"id": 127,
+			"text": "KuAn:酷币5€"
+		},
+		{
+			"id": 128,
+			"text": "KuAn:灰色酷币"
+		},
+		{
+			"id": 129,
+			"text": "KuAn:绿色酷币"
+		},
+		{
+			"id": 130,
+			"text": "KuAn:白纹酷币"
+		},
+		{
+			"id": 131,
+			"text": "KuAn:新酷币"
+		},
+		{
+			"id": 132,
+			"text": "KuAn:新币1分"
+		},
+		{
+			"id": 133,
+			"text": "KuAn:新酷币2分"
+		},
+		{
+			"id": 134,
+			"text": "KuAn:新酷币5分"
+		},
+		{
+			"id": 135,
+			"text": "KuAn:新酷币1毛"
+		},
+		{
+			"id": 136,
+			"text": "KuAn:新酷币2毛"
+		},
+		{
+			"id": 137,
+			"text": "KuAn:新酷币5毛"
+		},
+		{
+			"id": 138,
+			"text": "KuAn:新酷币1块"
+		},
+		{
+			"id": 139,
+			"text": "KuAn:新酷币2块"
+		},
+		{
+			"id": 140,
+			"text": "KuAn:新酷币5块"
+		},
+		{
+			"id": 141,
+			"text": "KuAn:新酷币10块"
+		},
+		{
+			"id": 142,
+			"text": "KuAn:新酷币20块"
+		},
+		{
+			"id": 143,
+			"text": "KuAn:新酷币50块"
+		},
+		{
+			"id": 144,
+			"text": "KuAn:新酷币100块"
+		},
+		{
+			"id": 145,
+			"text": "KuAn:新酷币1$"
+		},
+		{
+			"id": 146,
+			"text": "KuAn:新酷币2$"
+		},
+		{
+			"id": 147,
+			"text": "KuAn:新酷币5$"
+		},
+		{
+			"id": 148,
+			"text": "KuAn:新酷币1€"
+		},
+		{
+			"id": 149,
+			"text": "KuAn:新酷币2€"
+		},
+		{
+			"id": 150,
+			"text": "KuAn:新酷币5€"
+		}
+	]
+}

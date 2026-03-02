@@ -1,0 +1,830 @@
+{
+	"category": "哔哩哔哩",
+	"imgDir": "Bilibili",
+	"emotions": [
+		{
+			"id": 0,
+			"text": "Bilibili:doge_金箍"
+		},
+		{
+			"id": 1,
+			"text": "Bilibili:笑哭"
+		},
+		{
+			"id": 2,
+			"text": "Bilibili:蹲蹲"
+		},
+		{
+			"id": 3,
+			"text": "Bilibili:星星眼"
+		},
+		{
+			"id": 4,
+			"text": "Bilibili:微笑"
+		},
+		{
+			"id": 5,
+			"text": "Bilibili:吃瓜"
+		},
+		{
+			"id": 6,
+			"text": "Bilibili:打call"
+		},
+		{
+			"id": 7,
+			"text": "Bilibili:OK"
+		},
+		{
+			"id": 8,
+			"text": "Bilibili:doge"
+		},
+		{
+			"id": 9,
+			"text": "Bilibili:大哭"
+		},
+		{
+			"id": 10,
+			"text": "Bilibili:辣眼睛"
+		},
+		{
+			"id": 11,
+			"text": "Bilibili:滑稽"
+		},
+		{
+			"id": 12,
+			"text": "Bilibili:喜极而泣"
+		},
+		{
+			"id": 13,
+			"text": "Bilibili:呲牙"
+		},
+		{
+			"id": 14,
+			"text": "Bilibili:歪嘴"
+		},
+		{
+			"id": 15,
+			"text": "Bilibili:调皮"
+		},
+		{
+			"id": 16,
+			"text": "Bilibili:妙啊"
+		},
+		{
+			"id": 17,
+			"text": "Bilibili:嗑瓜子"
+		},
+		{
+			"id": 18,
+			"text": "Bilibili:藏狐"
+		},
+		{
+			"id": 19,
+			"text": "Bilibili:脱单doge"
+		},
+		{
+			"id": 20,
+			"text": "Bilibili:笑"
+		},
+		{
+			"id": 21,
+			"text": "Bilibili:给心心"
+		},
+		{
+			"id": 22,
+			"text": "Bilibili:脸红"
+		},
+		{
+			"id": 23,
+			"text": "Bilibili:嘟嘟"
+		},
+		{
+			"id": 24,
+			"text": "Bilibili:哦呼"
+		},
+		{
+			"id": 25,
+			"text": "Bilibili:喜欢"
+		},
+		{
+			"id": 26,
+			"text": "Bilibili:酸了"
+		},
+		{
+			"id": 27,
+			"text": "Bilibili:害羞"
+		},
+		{
+			"id": 28,
+			"text": "Bilibili:嫌弃"
+		},
+		{
+			"id": 29,
+			"text": "Bilibili:疑惑"
+		},
+		{
+			"id": 30,
+			"text": "Bilibili:偷笑"
+		},
+		{
+			"id": 31,
+			"text": "Bilibili:惊讶"
+		},
+		{
+			"id": 32,
+			"text": "Bilibili:捂脸"
+		},
+		{
+			"id": 33,
+			"text": "Bilibili:阴险"
+		},
+		{
+			"id": 34,
+			"text": "Bilibili:呆"
+		},
+		{
+			"id": 35,
+			"text": "Bilibili:抠鼻"
+		},
+		{
+			"id": 36,
+			"text": "Bilibili:大笑"
+		},
+		{
+			"id": 37,
+			"text": "Bilibili:惊喜"
+		},
+		{
+			"id": 38,
+			"text": "Bilibili:点赞"
+		},
+		{
+			"id": 39,
+			"text": "Bilibili:无语"
+		},
+		{
+			"id": 40,
+			"text": "Bilibili:鼓掌"
+		},
+		{
+			"id": 41,
+			"text": "Bilibili:尴尬"
+		},
+		{
+			"id": 42,
+			"text": "Bilibili:灵魂出窍"
+		},
+		{
+			"id": 43,
+			"text": "Bilibili:傲娇"
+		},
+		{
+			"id": 44,
+			"text": "Bilibili:委屈"
+		},
+		{
+			"id": 45,
+			"text": "Bilibili:疼"
+		},
+		{
+			"id": 46,
+			"text": "Bilibili:冷"
+		},
+		{
+			"id": 47,
+			"text": "Bilibili:热"
+		},
+		{
+			"id": 48,
+			"text": "Bilibili:生病"
+		},
+		{
+			"id": 49,
+			"text": "Bilibili:生气"
+		},
+		{
+			"id": 50,
+			"text": "Bilibili:捂眼"
+		},
+		{
+			"id": 51,
+			"text": "Bilibili:嘘声"
+		},
+		{
+			"id": 52,
+			"text": "Bilibili:思考"
+		},
+		{
+			"id": 53,
+			"text": "Bilibili:再见"
+		},
+		{
+			"id": 54,
+			"text": "Bilibili:翻白眼"
+		},
+		{
+			"id": 55,
+			"text": "Bilibili:抓狂"
+		},
+		{
+			"id": 56,
+			"text": "Bilibili:哈欠"
+		},
+		{
+			"id": 57,
+			"text": "Bilibili:奋斗"
+		},
+		{
+			"id": 58,
+			"text": "Bilibili:墨镜"
+		},
+		{
+			"id": 59,
+			"text": "Bilibili:难过"
+		},
+		{
+			"id": 60,
+			"text": "Bilibili:口罩"
+		},
+		{
+			"id": 61,
+			"text": "Bilibili:撇嘴"
+		},
+		{
+			"id": 62,
+			"text": "Bilibili:黑眼圈_金箍"
+		},
+		{
+			"id": 63,
+			"text": "Bilibili:猴哥"
+		},
+		{
+			"id": 64,
+			"text": "Bilibili:鸭科夫_流汗鸭"
+		},
+		{
+			"id": 65,
+			"text": "Bilibili:鸭科夫_干嘛鸭"
+		},
+		{
+			"id": 66,
+			"text": "Bilibili:鸭科夫_红温鸭"
+		},
+		{
+			"id": 67,
+			"text": "Bilibili:黑猫"
+		},
+		{
+			"id": 68,
+			"text": "Bilibili:三花猫"
+		},
+		{
+			"id": 69,
+			"text": "Bilibili:折耳猫"
+		},
+		{
+			"id": 70,
+			"text": "Bilibili:银魂_justaway"
+		},
+		{
+			"id": 71,
+			"text": "Bilibili:我独自升级_疑惑"
+		},
+		{
+			"id": 72,
+			"text": "Bilibili:怪兽8号_奇可露"
+		},
+		{
+			"id": 73,
+			"text": "Bilibili:颂乐人偶_眯眼笑"
+		},
+		{
+			"id": 74,
+			"text": "Bilibili:坂本_佛系"
+		},
+		{
+			"id": 75,
+			"text": "Bilibili:生气_金箍"
+		},
+		{
+			"id": 76,
+			"text": "Bilibili:龙年"
+		},
+		{
+			"id": 77,
+			"text": "Bilibili:豹富"
+		},
+		{
+			"id": 78,
+			"text": "Bilibili:兔兔岛_开心"
+		},
+		{
+			"id": 79,
+			"text": "Bilibili:兔兔岛_吃面"
+		},
+		{
+			"id": 80,
+			"text": "Bilibili:兔兔岛_睡觉"
+		},
+		{
+			"id": 81,
+			"text": "Bilibili:重返未来1999_喂"
+		},
+		{
+			"id": 82,
+			"text": "Bilibili:重返未来1999_赞"
+		},
+		{
+			"id": 83,
+			"text": "Bilibili:重返未来1999_谢谢老板"
+		},
+		{
+			"id": 84,
+			"text": "Bilibili:重返未来1999_什么"
+		},
+		{
+			"id": 85,
+			"text": "Bilibili:胆大党_微笑"
+		},
+		{
+			"id": 86,
+			"text": "Bilibili:水稻"
+		},
+		{
+			"id": 87,
+			"text": "Bilibili:奶茶干杯"
+		},
+		{
+			"id": 88,
+			"text": "Bilibili:汤圆"
+		},
+		{
+			"id": 89,
+			"text": "Bilibili:锦鲤"
+		},
+		{
+			"id": 90,
+			"text": "Bilibili:福到了"
+		},
+		{
+			"id": 91,
+			"text": "Bilibili:鸡腿"
+		},
+		{
+			"id": 92,
+			"text": "Bilibili:雪花"
+		},
+		{
+			"id": 93,
+			"text": "Bilibili:视频卫星"
+		},
+		{
+			"id": 94,
+			"text": "Bilibili:干杯"
+		},
+		{
+			"id": 95,
+			"text": "Bilibili:黑洞"
+		},
+		{
+			"id": 96,
+			"text": "Bilibili:爱心"
+		},
+		{
+			"id": 97,
+			"text": "Bilibili:胜利"
+		},
+		{
+			"id": 98,
+			"text": "Bilibili:加油"
+		},
+		{
+			"id": 99,
+			"text": "Bilibili:抱拳"
+		},
+		{
+			"id": 100,
+			"text": "Bilibili:响指"
+		},
+		{
+			"id": 101,
+			"text": "Bilibili:保佑"
+		},
+		{
+			"id": 102,
+			"text": "Bilibili:福"
+		},
+		{
+			"id": 103,
+			"text": "Bilibili:支持"
+		},
+		{
+			"id": 104,
+			"text": "Bilibili:拥抱"
+		},
+		{
+			"id": 105,
+			"text": "Bilibili:跪了"
+		},
+		{
+			"id": 106,
+			"text": "Bilibili:怪我咯"
+		},
+		{
+			"id": 107,
+			"text": "Bilibili:香格里拉边境"
+		},
+		{
+			"id": 108,
+			"text": "Bilibili:老鼠"
+		},
+		{
+			"id": 109,
+			"text": "Bilibili:牛年"
+		},
+		{
+			"id": 110,
+			"text": "Bilibili:兔年"
+		},
+		{
+			"id": 111,
+			"text": "Bilibili:三星堆"
+		},
+		{
+			"id": 112,
+			"text": "Bilibili:桃源_给花花"
+		},
+		{
+			"id": 113,
+			"text": "Bilibili:桃源_缘分"
+		},
+		{
+			"id": 114,
+			"text": "Bilibili:桃源_傲娇"
+		},
+		{
+			"id": 115,
+			"text": "Bilibili:桃源_欢呼"
+		},
+		{
+			"id": 116,
+			"text": "Bilibili:桃源_乖巧"
+		},
+		{
+			"id": 117,
+			"text": "Bilibili:鸣潮_好呀"
+		},
+		{
+			"id": 118,
+			"text": "Bilibili:鸣潮_唉"
+		},
+		{
+			"id": 119,
+			"text": "Bilibili:鸣潮_咦"
+		},
+		{
+			"id": 120,
+			"text": "Bilibili:鸣潮_嘿"
+		},
+		{
+			"id": 121,
+			"text": "Bilibili:鸣潮_哇"
+		},
+		{
+			"id": 122,
+			"text": "Bilibili:鸣潮_嗯"
+		},
+		{
+			"id": 123,
+			"text": "Bilibili:鸣潮_嗨"
+		},
+		{
+			"id": 124,
+			"text": "Bilibili:鸣潮_祈愿"
+		},
+		{
+			"id": 125,
+			"text": "Bilibili:鸣潮_你好"
+		},
+		{
+			"id": 126,
+			"text": "Bilibili:鸣潮_嘿嘿"
+		},
+		{
+			"id": 127,
+			"text": "Bilibili:洛天依"
+		},
+		{
+			"id": 128,
+			"text": "Bilibili:少女乐团派对_派对"
+		},
+		{
+			"id": 129,
+			"text": "Bilibili:少女乐团派对_等一下"
+		},
+		{
+			"id": 130,
+			"text": "Bilibili:少女乐团派对_期待"
+		},
+		{
+			"id": 131,
+			"text": "Bilibili:少女乐团派对_感想"
+		},
+		{
+			"id": 132,
+			"text": "Bilibili:少女乐团派对_开心"
+		},
+		{
+			"id": 133,
+			"text": "Bilibili:少女乐团派对_哇哦"
+		},
+		{
+			"id": 134,
+			"text": "Bilibili:怪兽8号_开心"
+		},
+		{
+			"id": 135,
+			"text": "Bilibili:白荆回廊_欢呼"
+		},
+		{
+			"id": 136,
+			"text": "Bilibili:白荆回廊_期待"
+		},
+		{
+			"id": 137,
+			"text": "Bilibili:白荆回廊_啊？"
+		},
+		{
+			"id": 138,
+			"text": "Bilibili:白荆回廊_好好好"
+		},
+		{
+			"id": 139,
+			"text": "Bilibili:白荆回廊_无语"
+		},
+		{
+			"id": 140,
+			"text": "Bilibili:白荆回廊_尴尬"
+		},
+		{
+			"id": 141,
+			"text": "Bilibili:坎公骑冠剑_吃鸡"
+		},
+		{
+			"id": 142,
+			"text": "Bilibili:坎公骑冠剑_钻石"
+		},
+		{
+			"id": 143,
+			"text": "Bilibili:坎公骑冠剑_无语"
+		},
+		{
+			"id": 144,
+			"text": "Bilibili:来古-疑问"
+		},
+		{
+			"id": 145,
+			"text": "Bilibili:来古-沉思"
+		},
+		{
+			"id": 146,
+			"text": "Bilibili:来古-呆滞"
+		},
+		{
+			"id": 147,
+			"text": "Bilibili:来古-震撼"
+		},
+		{
+			"id": 148,
+			"text": "Bilibili:来古-注意"
+		},
+		{
+			"id": 149,
+			"text": "Bilibili:FGO_耶"
+		},
+		{
+			"id": 150,
+			"text": "Bilibili:FGO_开心"
+		},
+		{
+			"id": 151,
+			"text": "Bilibili:FGO_汗"
+		},
+		{
+			"id": 152,
+			"text": "Bilibili:FGO_怒"
+		},
+		{
+			"id": 153,
+			"text": "Bilibili:FGO_偷看"
+		},
+		{
+			"id": 154,
+			"text": "Bilibili:FGO_点赞"
+		},
+		{
+			"id": 155,
+			"text": "Bilibili:FGO_干饭"
+		},
+		{
+			"id": 156,
+			"text": "Bilibili:FGO_加油"
+		},
+		{
+			"id": 157,
+			"text": "Bilibili:FGO_困"
+		},
+		{
+			"id": 158,
+			"text": "Bilibili:FGO_燃尽"
+		},
+		{
+			"id": 159,
+			"text": "Bilibili:FGO_wink"
+		},
+		{
+			"id": 160,
+			"text": "Bilibili:初音未来_大笑"
+		},
+		{
+			"id": 161,
+			"text": "Bilibili:原神_哇"
+		},
+		{
+			"id": 162,
+			"text": "Bilibili:原神_哼"
+		},
+		{
+			"id": 163,
+			"text": "Bilibili:原神_嗯"
+		},
+		{
+			"id": 164,
+			"text": "Bilibili:原神_欸嘿"
+		},
+		{
+			"id": 165,
+			"text": "Bilibili:原神_喝茶"
+		},
+		{
+			"id": 166,
+			"text": "Bilibili:原神_生气"
+		},
+		{
+			"id": 167,
+			"text": "Bilibili:保卫萝卜_白眼"
+		},
+		{
+			"id": 168,
+			"text": "Bilibili:保卫萝卜_笔芯"
+		},
+		{
+			"id": 169,
+			"text": "Bilibili:保卫萝卜_哭哭"
+		},
+		{
+			"id": 170,
+			"text": "Bilibili:保卫萝卜_哇"
+		},
+		{
+			"id": 171,
+			"text": "Bilibili:保卫萝卜_问号"
+		},
+		{
+			"id": 172,
+			"text": "Bilibili:无悔华夏_不愧是你"
+		},
+		{
+			"id": 173,
+			"text": "Bilibili:无悔华夏_吃瓜"
+		},
+		{
+			"id": 174,
+			"text": "Bilibili:无悔华夏_达咩"
+		},
+		{
+			"id": 175,
+			"text": "Bilibili:无悔华夏_点赞"
+		},
+		{
+			"id": 176,
+			"text": "Bilibili:无悔华夏_好耶"
+		},
+		{
+			"id": 177,
+			"text": "Bilibili:奥比岛_搬砖"
+		},
+		{
+			"id": 178,
+			"text": "Bilibili:奥比岛_点赞"
+		},
+		{
+			"id": 179,
+			"text": "Bilibili:奥比岛_击爪"
+		},
+		{
+			"id": 180,
+			"text": "Bilibili:奥比岛_委屈"
+		},
+		{
+			"id": 181,
+			"text": "Bilibili:奥比岛_喜欢"
+		},
+		{
+			"id": 182,
+			"text": "Bilibili:黎明觉醒_怒了鸦"
+		},
+		{
+			"id": 183,
+			"text": "Bilibili:黎明觉醒_石化鸦"
+		},
+		{
+			"id": 184,
+			"text": "Bilibili:黎明觉醒_摊手鸦"
+		},
+		{
+			"id": 185,
+			"text": "Bilibili:黎明觉醒_比心鸦"
+		},
+		{
+			"id": 186,
+			"text": "Bilibili:黎明觉醒_哼白眼鸦"
+		},
+		{
+			"id": 187,
+			"text": "Bilibili:以闪亮之名_哎？！"
+		},
+		{
+			"id": 188,
+			"text": "Bilibili:以闪亮之名_爱你哦"
+		},
+		{
+			"id": 189,
+			"text": "Bilibili:以闪亮之名_吃瓜"
+		},
+		{
+			"id": 190,
+			"text": "Bilibili:以闪亮之名_好耶!"
+		},
+		{
+			"id": 191,
+			"text": "Bilibili:以闪亮之名_星星眼"
+		},
+		{
+			"id": 192,
+			"text": "Bilibili:以闪亮之名_针不戳"
+		},
+		{
+			"id": 193,
+			"text": "Bilibili:元梦_爱你"
+		},
+		{
+			"id": 194,
+			"text": "Bilibili:元梦_打call"
+		},
+		{
+			"id": 195,
+			"text": "Bilibili:元梦_大哭"
+		},
+		{
+			"id": 196,
+			"text": "Bilibili:元梦_点赞"
+		},
+		{
+			"id": 197,
+			"text": "Bilibili:元梦_哭哭"
+		},
+		{
+			"id": 198,
+			"text": "Bilibili:无限暖暖_暖暖"
+		},
+		{
+			"id": 199,
+			"text": "Bilibili:无限暖暖_大喵"
+		},
+		{
+			"id": 200,
+			"text": "Bilibili:无限暖暖_单品灵"
+		},
+		{
+			"id": 201,
+			"text": "Bilibili:无限暖暖_心愿精灵"
+		},
+		{
+			"id": 202,
+			"text": "Bilibili:无限暖暖_美食家蜜蜂"
+		},
+		{
+			"id": 203,
+			"text": "Bilibili:无限暖暖_袜袜羊"
+		},
+		{
+			"id": 204,
+			"text": "Bilibili:无限暖暖_围兜狸猫"
+		},
+		{
+			"id": 205,
+			"text": "Bilibili:无限暖暖_毛线汪汪"
+		}
+	]
+}

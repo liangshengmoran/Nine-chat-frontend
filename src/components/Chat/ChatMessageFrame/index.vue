@@ -56,7 +56,6 @@
 			</span>
 			<icon name="char-frame-del" scale="1.8" class="del-icon" @click.stop="handlerDelQuoteMessage" />
 		</div>
-		<div class="message-frame-empty" @click="focusInput"></div>
 	</div>
 </template>
 
@@ -321,8 +320,10 @@ export default {
   }
   &-input {
     display: flex;
+    flex: 1;
     padding: 0 15px;
     overflow: hidden;
+    cursor: text;
     &-img {
       object-fit: cover;
       border: 1px solid #b6b6b6;
@@ -331,7 +332,8 @@ export default {
     }
     &-text {
       width: 100%;
-      overflow: hidden;
+      flex: 1;
+      overflow-y: auto;
       box-sizing: border-box;
       resize: none;
       outline: none;
@@ -341,9 +343,7 @@ export default {
       background-color: transparent;
     }
   }
-  &-empty {
-    flex: 1;
-  }
+
   .minHeight {
     min-height: 60px;
   }
